@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riflan Mohamed | Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/TextPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="log.png">
-    <style>
-       
-    </style>
 </head>
 <body>
     <!-- Custom cursor -->
@@ -38,12 +38,9 @@
         <i class="fas fa-moon"></i>
     </div>
 
-    <!-- Particle Background -->
-    <div class="particles" id="particles"></div>
-
     <!-- Navigation -->
     <nav id="navbar">
-        <div class="logo">R</span></div>
+        <div class="logo">R</div>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -53,7 +50,7 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
         <button class="menu-btn">
-         
+            <i class="fas fa-bars"></i>
         </button>
     </nav>
 
@@ -114,6 +111,33 @@
                         <li>HTML/CSS</li>
                         <li>PHP</li>
                     </ul>
+                    
+                    <div class="tech-icons">
+                        <div class="tech-icon">
+                            <i class="fab fa-java"></i>
+                            <span>Java</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-js-square"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-php"></i>
+                            <span>PHP</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="skill-category">
                     <h4><i class="fas fa-database"></i> Database & Tools</h4>
@@ -124,6 +148,29 @@
                         <li>VS Code</li>
                         <li>Hibernate</li>
                     </ul>
+                    
+                    <div class="tech-icons">
+                        <div class="tech-icon">
+                            <i class="fas fa-database"></i>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-server"></i>
+                            <span>SQL</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-code"></i>
+                            <span>NetBeans</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-code"></i>
+                            <span>VS Code</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-cogs"></i>
+                            <span>Hibernate</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -247,6 +294,24 @@
                     <a href="#" class="btn btn-outline">View Details</a>
                 </div>
             </div>
+            <!-- New Project Card - Momento Todo App -->
+            <div class="project-card">
+                <div class="project-img">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Momento Todo App</h3>
+                    <p>A full-stack task management application built with React Native, TypeScript, Java, and Hibernate. Features include user authentication, task categorization, reminders, and cloud synchronization.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Hibernate</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                    <a href="#" class="btn btn-outline">View Details</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -306,7 +371,7 @@
                     <textarea id="message" placeholder="Your Message" required></textarea>
                 </div>
                 <div class="form-buttons">
-                    <button type="submit" class="btn">Send Message</button>
+                    <button type="submit" class="btn" id="submitBtn">Send Message</button>
                     <a href="https://wa.me/94784342391?text=Hello%20Riflan,%20I'm%20interested%20in%20your%20profile" class="btn btn-outline">
                         <i class="fab fa-whatsapp"></i> WhatsApp
                     </a>
@@ -339,7 +404,6 @@
         </a>
     </div>
 
-    <script src="script.js"> </script>
-    
+  <script src="script.js"></script>
 </body>
 </html>

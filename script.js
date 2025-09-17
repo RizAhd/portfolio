@@ -2,116 +2,85 @@
             // Initialize GSAP
             gsap.registerPlugin(ScrollTrigger, TextPlugin);
             
-           
-// Custom cursor functionality
-const cursor = document.getElementById('cursor');
-const cursorFollower = document.getElementById('cursor-follower');
+            // Custom cursor functionality
+            const cursor = document.getElementById('cursor');
+            const cursorFollower = document.getElementById('cursor-follower');
 
-let mouseX = 0;
-let mouseY = 0;
-let followerX = 0;
-let followerY = 0;
+            let mouseX = 0;
+            let mouseY = 0;
+            let followerX = 0;
+            let followerY = 0;
 
-// Speed of follower (lower = smoother but slower)
-const speed = 0.15;
+            // Speed of follower (lower = smoother but slower)
+            const speed = 0.15;
 
-// Animate cursor follower
-function animate() {
-    // Calculate distance to move
-    const distX = mouseX - followerX;
-    const distY = mouseY - followerY;
-    
-    // Move the follower
-    followerX += distX * speed;
-    followerY += distY * speed;
-    
-    // Update position
-    cursorFollower.style.left = `${followerX}px`;
-    cursorFollower.style.top = `${followerY}px`;
-    
-    // Continue animation
-    requestAnimationFrame(animate);
-}
-
-// Start animation
-animate();
-
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.style.left = `${mouseX}px`;
-    cursor.style.top = `${mouseY}px`;
-});
-
-// Interactive cursor effects
-document.querySelectorAll('a, button, .btn, .floating-btn, .contact-item, .skill-category, .project-card, .part-time-card, .experience-item, .education-item').forEach(element => {
-    element.addEventListener('mouseenter', () => {
-        cursor.classList.add('active');
-        cursorFollower.classList.add('active');
-    });
-    
-    element.addEventListener('mouseleave', () => {
-        cursor.classList.remove('active');
-        cursorFollower.classList.remove('active');
-    });
-});
-
-// Click animation for cursor
-document.addEventListener('mousedown', () => {
-    cursor.classList.add('click');
-    cursorFollower.classList.add('click');
-});
-
-document.addEventListener('mouseup', () => {
-    cursor.classList.remove('click');
-    cursorFollower.classList.remove('click');
-});
-
-// Hide cursor when not moving
-let cursorTimeout;
-function hideCursor() {
-    cursor.classList.add('hidden');
-    cursorFollower.classList.add('hidden');
-}
-
-document.addEventListener('mousemove', () => {
-    cursor.classList.remove('hidden');
-    cursorFollower.classList.remove('hidden');
-    
-    clearTimeout(cursorTimeout);
-    cursorTimeout = setTimeout(hideCursor, 3000);
-});
-
-            
-            // Create particle background
-            function createParticles() {
-                const particlesContainer = document.getElementById('particles');
-                const particleCount = 30;
+            // Animate cursor follower
+            function animate() {
+                // Calculate distance to move
+                const distX = mouseX - followerX;
+                const distY = mouseY - followerY;
                 
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('particle');
-                    
-                    // Random size between 5 and 15px
-                    const size = Math.random() * 10 + 5;
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    
-                    // Random position
-                    const posX = Math.random() * 100;
-                    const posY = Math.random() * 100;
-                    particle.style.left = `${posX}%`;
-                    particle.style.top = `${posY}%`;
-                    
-                    // Random animation delay
-                    particle.style.animationDelay = `${Math.random() * 15}s`;
-                    
-                    particlesContainer.appendChild(particle);
-                }
+                // Move the follower
+                followerX += distX * speed;
+                followerY += distY * speed;
+                
+                // Update position
+                cursorFollower.style.left = `${followerX}px`;
+                cursorFollower.style.top = `${followerY}px`;
+                
+                // Continue animation
+                requestAnimationFrame(animate);
             }
-            
-            createParticles();
-            
+
+            // Start animation
+            animate();
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursor.style.left = `${mouseX}px`;
+                cursor.style.top = `${mouseY}px`;
+            });
+
+            // Interactive cursor effects
+            document.querySelectorAll('a, button, .btn, .floating-btn, .contact-item, .skill-category, .project-card, .part-time-card, .experience-item, .education-item').forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    cursor.classList.add('active');
+                    cursorFollower.classList.add('active');
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('active');
+                    cursorFollower.classList.remove('active');
+                });
+            });
+
+            // Click animation for cursor
+            document.addEventListener('mousedown', () => {
+                cursor.classList.add('click');
+                cursorFollower.classList.add('click');
+            });
+
+            document.addEventListener('mouseup', () => {
+                cursor.classList.remove('click');
+                cursorFollower.classList.remove('click');
+            });
+
+            // Hide cursor when not moving
+            let cursorTimeout;
+            function hideCursor() {
+                cursor.classList.add('hidden');
+                cursorFollower.classList.add('hidden');
+            }
+
+            document.addEventListener('mousemove', () => {
+                cursor.classList.remove('hidden');
+                cursorFollower.classList.remove('hidden');
+                
+                clearTimeout(cursorTimeout);
+                cursorTimeout = setTimeout(hideCursor, 3000);
+            });
+
             // Welcome notification functionality
             const welcomeNotification = document.getElementById('welcomeNotification');
             const closeWelcomeBtn = document.getElementById('closeWelcome');
@@ -230,12 +199,89 @@ document.addEventListener('mousemove', () => {
                 document.body.removeChild(link);
             });
             
-            // Form submission
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message! I will get back to you soon.');
-                this.reset();
-            });
+            // Initialize EmailJS with your public key
+            if (typeof emailjs === 'undefined') {
+                console.error('EmailJS library not loaded. Falling back to alternative solution.');
+                // Fallback: Show WhatsApp option more prominently
+                document.getElementById('submitBtn').disabled = true;
+                document.getElementById('submitBtn').innerText = 'Use WhatsApp Instead';
+            } else {
+                // Initialize EmailJS with your public key
+                emailjs.init("_AuuvYOG7DCMqT47z"); // Replace with your actual EmailJS public key
+                
+                // Handle form submission
+                document.getElementById('contactForm').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    // Get form data
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value;
+                    
+                    // Show loading state
+                    const submitBtn = document.getElementById('submitBtn');
+                    submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+                    submitBtn.disabled = true;
+                    
+                    // Send email using EmailJS
+                    emailjs.send('service_828imhq', 'template_4qucj0h', {
+                        from_name: name,
+                        from_email: email,
+                        subject: subject,
+                        message: message,
+                        to_email: 'rizlan4545@gmail.com'
+                    })
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                        
+                        // Reset form
+                        document.getElementById('contactForm').reset();
+                        
+                        // Reset button
+                        submitBtn.innerHTML = 'Send Message';
+                        submitBtn.disabled = false;
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                        showNotification('Failed to send message. Please try again later or contact me via WhatsApp.', 'error');
+                        
+                        // Reset button
+                        submitBtn.innerHTML = 'Send Message';
+                        submitBtn.disabled = false;
+                    });
+                });
+            }
+            
+            // Function to show notification
+            function showNotification(message, type = 'success') {
+                // Create notification element if it doesn't exist
+                let notification = document.getElementById('emailNotification');
+                
+                if (!notification) {
+                    notification = document.createElement('div');
+                    notification.id = 'emailNotification';
+                    notification.className = `notification ${type}`;
+                    document.body.appendChild(notification);
+                }
+                
+                // Set notification content
+                notification.innerHTML = `
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    <span>${message}</span>
+                `;
+                notification.className = `notification ${type}`;
+                
+                // Show notification
+                setTimeout(() => {
+                    notification.classList.add('show');
+                    
+                    // Hide after 5 seconds
+                    setTimeout(() => {
+                        notification.classList.remove('show');
+                    }, 5000);
+                }, 100);
+            }
             
             // Smooth scrolling for navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
