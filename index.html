@@ -1,408 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riflan Mohamed | Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/TextPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="log.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riflan Mohamed | Software Engineering Student</title>
+  <meta name="description" content="Portfolio of Riflan Mohamed, Software Engineering Student and Aspiring AI Engineer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Custom cursor -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="cursor-follower"></div>
-
-    <!-- Welcome Notification -->
-    <div class="welcome-notification" id="welcomeNotification">
-        <div class="welcome-icon">
-            <i class="fas fa-laptop-code"></i>
-        </div>
-        <div class="welcome-content">
-            <h3>Hey there! 👋</h3>
-            <p>Welcome to my portfolio! Ready to see some coding magic? 🚀</p>
-        </div>
-        <button id="closeWelcome">
-            <i class="fas fa-times"></i>
-        </button>
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <p class="preloader-brand" id="preloaderBrand">RIFLAN</p>
+      <p class="preloader-sub" id="preloaderSub">Engineering Premium Digital Products</p>
+      <div class="preloader-line"><span id="preloaderProgress"></span></div>
+      <p class="preloader-count" id="preloaderCount">0%</p>
     </div>
+  </div>
 
-    <!-- Dark mode toggle -->
-    <div class="dark-mode-toggle" id="darkModeToggle">
-        <i class="fas fa-moon"></i>
-    </div>
+  <div class="bg-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-orb orb-2" aria-hidden="true"></div>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="logo">{R}</div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#part-time">Part-Time</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button class="menu-btn">
-            <i class="fas fa-bars"></i>
-        </button>
+  <header class="site-header" id="siteHeader">
+    <a href="#home" class="brand">Riflan</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="site-nav" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
     </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">Software Engineering Student & AI Enthusiast</div>
-            <h1>Riflan <span class="text-gradient">Mohamed</span></h1>
-            
-            <div class="dynamic-text-container">
-                <div class="dynamic-text" id="dynamicText"></div>
-            </div>
-            
-            <p>Passionate about creating innovative software solutions and exploring the frontiers of Artificial Intelligence.</p>
-            <div class="btn-container">
-                <a href="#projects" class="btn">View Projects</a>
-                <a href="#contact" class="btn btn-contact">Get In Touch</a>
-                <a href="#about" class="btn btn-outline">Learn More</a>
-            </div>
-        </div>
+  <main>
+    <section class="hero" id="home">
+      <p class="eyebrow">Software Engineering Student | Aspiring AI Engineer</p>
+      <h1 class="hero-title">Riflan Mohamed</h1>
+      <p class="hero-role">I build as a <span id="heroRoleText">Software Engineer</span></p>
+      <p class="hero-summary">
+        Aspiring Software Engineering Intern and AI enthusiast with strong expertise in Java, JavaScript, PHP, and Python,
+        complemented by experience in React, React Native, and full-stack development.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Let's Connect</a>
+      </div>
+      <div class="quick-stats reveal">
+        <article>
+          <h3>3+</h3>
+          <p>Diploma & Degree Paths</p>
+        </article>
+        <article>
+          <h3>6+</h3>
+          <p>Major Projects Built</p>
+        </article>
+        <article>
+          <h3>2026</h3>
+          <p>Current Internship Year</p>
+        </article>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about section-alt">
-        <h2 class="section-title">About <span>Me</span></h2>
-        <div class="about-content">
-            <div class="about-text">
-                <h3>Software Engineering Student & AI Enthusiast</h3>
-                <p>A highly motivated and passionate Software Engineering student with hands-on experience in Java-based application development. Skilled in multiple programming languages, with a strong interest in Artificial Intelligence and IoT.</p>
-                <p>Proven ability to contribute to software projects, including cinema reservation systems and research on Smart Classrooms. Eager to leverage technical expertise and self-driven AI research to develop innovative solutions.</p>
-                
-                <div class="contact-info">
-                    <div class="contact-item hover-lift">
-                        <i class="fas fa-envelope"></i>
-                        <span>rizlanahmd4545@gmail.com</span>
-                    </div>
-                    <div class="contact-item hover-lift">
-                        <i class="fas fa-phone"></i>
-                        <span>+94 78 434 2391</span>
-                    </div>
-                    <div class="contact-item hover-lift">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>BSc (Hons) in Software Engineering</span>
-                    </div>
-                    <div class="contact-item hover-lift">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Sri Lanka</span>
-                    </div>
-                </div>
-            </div>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h4><i class="fas fa-code"></i> Programming Languages</h4>
-                    <ul class="skill-list">
-                        <li>Java</li>
-                        <li>JavaScript</li>
-                        <li>Python</li>
-                        <li>HTML/CSS</li>
-                        <li>PHP</li>
-                    </ul>
-                    
-                    <div class="tech-icons">
-                        <div class="tech-icon">
-                            <i class="fab fa-java"></i>
-                            <span>Java</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-js-square"></i>
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-python"></i>
-                            <span>Python</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-html5"></i>
-                            <span>HTML5</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-css3-alt"></i>
-                            <span>CSS3</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fab fa-php"></i>
-                            <span>PHP</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h4><i class="fas fa-database"></i> Database & Tools</h4>
-                    <ul class="skill-list">
-                        <li>MySQL</li>
-                        <li>SQL</li>
-                        <li>NetBeans</li>
-                        <li>VS Code</li>
-                        <li>Hibernate</li>
-                    </ul>
-                    
-                    <div class="tech-icons">
-                        <div class="tech-icon">
-                            <i class="fas fa-database"></i>
-                            <span>MySQL</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-server"></i>
-                            <span>SQL</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-code"></i>
-                            <span>NetBeans</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-code"></i>
-                            <span>VS Code</span>
-                        </div>
-                        <div class="tech-icon">
-                            <i class="fas fa-cogs"></i>
-                            <span>Hibernate</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="section reveal" id="value">
+      <div class="section-head">
+        <p class="section-tag">Professional Value</p>
+        <h2>Product-focused engineering with AI-driven delivery</h2>
+      </div>
+      <div class="value-grid">
+        <article class="value-card">
+          <h3>AI Product Development</h3>
+          <p>I design and build practical AI applications using Flask, OpenAI, Pinecone, and retrieval pipelines to deliver real user value.</p>
+        </article>
+        <article class="value-card">
+          <h3>Real-Time Experiences</h3>
+          <p>I implement high-performance real-time features with WebSocket architecture for chat, notifications, and responsive interactions.</p>
+        </article>
+        <article class="value-card">
+          <h3>Mobile + Full-Stack Execution</h3>
+          <p>From React Native frontends to backend integrations and API workflows, I deliver complete applications with production-ready foundations.</p>
+        </article>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <h2 class="section-title">Technical <span>Skills</span></h2>
-        <div class="skills-container">
-            <div class="skill-category">
-                <h4><i class="fas fa-laptop-code"></i> Software Development</h4>
-                <ul class="skill-list">
-                    <li>Java Application Development</li>
-                    <li>Web Development (JSP, Servlets)</li>
-                    <li>Object-Oriented Programming</li>
-                    <li>API Design & Development</li>
-                    <li>E-Commerce Solutions</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h4><i class="fas fa-brain"></i> AI & Research</h4>
-                <ul class="skill-list">
-                    <li>Self-learning AI concepts</li>
-                    <li>Machine Learning Fundamentals</li>
-                    <li>IoT Integration</li>
-                    <li>Smart Classroom Research</li>
-                    <li>Open-Source AI Materials</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h4><i class="fas fa-graduation-cap"></i> Education</h4>
-                <ul class="skill-list">
-                    <li>BSc (Hons) in Software Engineering - Java Institute</li>
-                    <li>Diploma in Data Science and AI Engineering</li>
-                    <li>Advanced Level in Biological Science</li>
-                    <li>Diploma in English (ESOFT)</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h4><i class="fas fa-globe"></i> Languages & Interests</h4>
-                <ul class="skill-list">
-                    <li>Tamil: Fluent</li>
-                    <li>English: Intermediate</li>
-                    <li>Sinhala: Intermediate</li>
-                    <li>Artificial Intelligence & ML</li>
-                    <li>Internet of Things (IoT)</li>
-                </ul>
-            </div>
-        </div>
+    <section class="section reveal" id="about">
+      <div class="section-head">
+        <p class="section-tag">About</p>
+        <h2>Building practical products with AI + software engineering</h2>
+      </div>
+      <div class="about-grid">
+        <p>
+          Skilled in building scalable and data-driven applications, developing AI solutions using Flask, OpenAI, and Pinecone,
+          and implementing real-time systems. Familiar with databases, REST APIs, Git/GitHub, and modern development tools.
+          Passionate about AI, Machine Learning, and innovative technologies, with a strong problem-solving mindset and eagerness
+          to learn, adapt, and contribute to impactful projects.
+        </p>
+        <ul class="about-points">
+          <li><i class="fa-solid fa-code"></i> Full-stack web and mobile development</li>
+          <li><i class="fa-solid fa-brain"></i> RAG-based AI chatbots and NLP workflows</li>
+          <li><i class="fa-solid fa-bolt"></i> Real-time systems with WebSocket communication</li>
+          <li><i class="fa-solid fa-database"></i> Data-driven application architecture</li>
+        </ul>
+      </div>
     </section>
 
-    <!-- Part-Time Work Section -->
-    <section id="part-time" class="part-time section-alt">
-        <h2 class="section-title">Part-Time <span>Work</span></h2>
-        <div class="part-time-grid">
-            <div class="part-time-card">
-                <i class="fas fa-chart-line"></i>
-                <h3>Digital Marketing Content Creator</h3>
-                <p>Creating engaging digital content for social media platforms, developing marketing strategies, and analyzing campaign performance to drive engagement and conversions.</p>
-            </div>
-            <div class="part-time-card">
-                <i class="fas fa-video"></i>
-                <h3>Video Editor</h3>
-                <p>Editing and producing high-quality video content for various platforms, including promotional videos, tutorials, and social media content using professional editing software.</p>
-            </div>
-            <div class="part-time-card">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <h3>Ordinary Level Science Tutor</h3>
-                <p>Teaching science concepts to Ordinary Level students, developing curriculum materials, and providing academic support in science-related subjects.</p>
-            </div>
-        </div>
+    <section class="section reveal" id="experience">
+      <div class="section-head">
+        <p class="section-tag">Experience</p>
+        <h2>Current professional journey</h2>
+      </div>
+      <article class="timeline-card">
+        <div class="timeline-meta">Innov8Smart | Feb 2026 - Present</div>
+        <h3>Intern - React Native Mobile Developer & AI Trainee</h3>
+        <ul>
+          <li>Developing cross-platform mobile applications using React Native.</li>
+          <li>Working on AI-related projects, including integration with APIs and intelligent features.</li>
+          <li>Collaborating with the team to implement real-time functionality, UI improvements, and backend integration.</li>
+        </ul>
+      </article>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <h2 class="section-title">Projects & <span>Experience</span></h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-img">
-                    <i class="fas fa-film"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Cinema Reservation System</h3>
-                    <p>Developed and contributed to a cinema reservation system application using Java. Worked on backend logic, user authentication, and database integration.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">NetBeans</span>
-                    </div>
-                    <a href="#" class="btn btn-outline">View Details</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-img">
-                    <i class="fas fa-school"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Smart Classroom Research</h3>
-                    <p>Currently working on an IoT-based research project for a Smart Classroom. Exploring AI integration to enhance learning experiences.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">IoT</span>
-                        <span class="tech-tag">AI</span>
-                        <span class="tech-tag">Research</span>
-                    </div>
-                    <a href="#" class="btn btn-outline">View Details</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-img">
-                    <i class="fas fa-book"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Boosky Book E-Commerce</h3>
-                    <p>E-Commerce website for books using Java, HTML, CSS, JSP, Servlets, Hibernate, and MySQL. Features user authentication, product catalog, and shopping cart.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">JSP</span>
-                        <span class="tech-tag">Hibernate</span>
-                        <span class="tech-tag">MySQL</span>
-                    </div>
-                    <a href="#" class="btn btn-outline">View Details</a>
-                </div>
-            </div>
-            <!-- New Project Card - Momento Todo App -->
-            <div class="project-card">
-                <div class="project-img">
-                    <i class="fas fa-tasks"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Momento Todo App</h3>
-                    <p>A full-stack task management application built with React Native, TypeScript, Java, and Hibernate. Features include user authentication, task categorization, reminders, and cloud synchronization.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">React Native</span>
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">Hibernate</span>
-                        <span class="tech-tag">MySQL</span>
-                    </div>
-                    <a href="#" class="btn btn-outline">View Details</a>
-                </div>
-            </div>
-        </div>
+    <section class="section reveal" id="projects">
+      <div class="section-head">
+        <p class="section-tag">Projects</p>
+        <h2>Selected work and product builds</h2>
+      </div>
+      <div class="project-filters" id="projectFilters" role="tablist" aria-label="Project categories">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-filter="ai" role="tab" aria-selected="false">AI</button>
+        <button class="filter-btn" data-filter="mobile" role="tab" aria-selected="false">Mobile</button>
+        <button class="filter-btn" data-filter="fullstack" role="tab" aria-selected="false">Full-Stack</button>
+      </div>
+      <div class="projects-grid" id="projectsGrid">
+        <article class="project-card project-item" data-category="ai fullstack">
+          <h3>Mediguide Medical Chatbot</h3>
+          <p>AI-powered medical assistant providing health guidance and support.</p>
+          <p class="feature-line">Features: symptom checking, real-time responses, conversational AI, text support, personalized recommendations</p>
+          <p class="tech-line">Tech: Python, Flask, OpenAI, NLP, Pinecone</p>
+        </article>
+
+        <article class="project-card project-item" data-category="ai fullstack">
+          <h3>Universal Research Assistant</h3>
+          <p>AI research assistant for students and professionals.</p>
+          <p class="feature-line">Features: answers questions using multiple verified sources (Wikipedia, arXiv, NewsAPI), provides citations, summarizes latest papers and news</p>
+          <p class="tech-line">Tech: Python, OpenAI, Pinecone, Flask, Wikipedia API, arXiv API, NewsAPI</p>
+        </article>
+
+        <article class="project-card project-item" data-category="mobile fullstack">
+          <h3>PingMe Real-Time Chat Application</h3>
+          <p>Cross-platform chat app with instant messaging.</p>
+          <p class="feature-line">Features: real-time messaging, user authentication, WebSocket-based communication</p>
+          <p class="tech-line">Tech: Java (backend with Hibernate Servlets), React Native (frontend), MySQL, WebSocket, TypeScript, JavaScript</p>
+        </article>
+
+        <article class="project-card project-item" data-category="mobile fullstack">
+          <h3>Qiera Real Estate Application</h3>
+          <p>Web/mobile app for property listings and management.</p>
+          <p class="feature-line">Features: property search, listing management, map integration, user profiles, responsive UI</p>
+          <p class="tech-line">Tech: React Native, Appwrite, MySQL, REST APIs, Tailwind CSS</p>
+        </article>
+
+        <article class="project-card project-item" data-category="fullstack">
+          <h3>ZGen Cinema Reservation System</h3>
+          <p>Desktop/Web reservation system forked and enhanced.</p>
+          <p class="feature-line">Features: movie scheduling, cashier handling, snack bar management, QR ticket generation</p>
+          <p class="tech-line">Tech: Java, MySQL, Jasper Reports</p>
+        </article>
+
+        <article class="project-card project-item" data-category="mobile fullstack">
+          <h3>Other Projects</h3>
+          <p>Momento Todo App, Personal Portfolio Website, Booksy - Website.</p>
+          <p class="feature-line">Focused on practical UI/UX, clean code structure, and reliable feature delivery.</p>
+          <p class="tech-line">Tech: React Native, JavaScript, Java, TypeScript, web technologies</p>
+        </article>
+      </div>
     </section>
 
-    <!-- Experience Section -->
-    <section class="experience section-alt">
-        <h2 class="section-title">Experience & <span>Education</span></h2>
-        
-        <div class="education-item hover-lift">
-            <h3>BSc (Hons) in Software Engineering</h3>
-            <div class="education-date">Sep 2022 - Dec 2026</div>
-            <p>Java Institute of Advanced Technology</p>
-        </div>
-        <div class="education-item hover-lift">
-            <h3>Diploma in English</h3>
-            <div class="education-date">Jan 2024 - August 2024</div>
-            <p>ESFT Metro Campus - Expanding English language proficiency for professional communication.</p>
-        </div>
-        <div class="education-item hover-lift">
-            <h3>Diploma in Data Science and AI Engineering</h3>
-            <div class="education-date">Currently Studying</div>
-            <p>Expanding knowledge in data science and artificial intelligence engineering concepts and applications.</p>
-        </div>
+    <section class="section reveal" id="approach">
+      <div class="section-head">
+        <p class="section-tag">Work Approach</p>
+        <h2>How I build modern applications</h2>
+      </div>
+      <div class="approach-grid">
+        <article class="approach-item">
+          <h3>1. Discover</h3>
+          <p>Define user needs, use cases, and expected business outcomes before implementation.</p>
+        </article>
+        <article class="approach-item">
+          <h3>2. Architect</h3>
+          <p>Choose scalable technologies for frontend, backend, data, and AI integration layers.</p>
+        </article>
+        <article class="approach-item">
+          <h3>3. Build</h3>
+          <p>Develop clean, testable modules with modern tooling, responsive UI, and robust API design.</p>
+        </article>
+        <article class="approach-item">
+          <h3>4. Optimize</h3>
+          <p>Improve performance, usability, and reliability through iterations and feedback-driven refinement.</p>
+        </article>
+      </div>
     </section>
 
-    <!-- Fun Section -->
-    <section class="fun-section">
-        <div class="fun-content">
-            <h3>Want to make my day?</h3>
-            <p>If you'd like to show some appreciation for my work, you can order me a sugar-free Coke!</p>
-            <a href="https://wa.me/94784342391?text=Hello%20Riflan,%20I'd%20like%20to%20order%20you%20a%20sugar-free%20Coke!" class="coke-btn" id="cokeBtn">
-                <i class="fas fa-cookie-bite"> </i> 
-                  Order a Sugar-Free Coke
-            </a>
-        </div>
+    <section class="section reveal" id="skills">
+      <div class="section-head">
+        <p class="section-tag">Skills</p>
+        <h2>Technical stack and capabilities</h2>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-block">
+          <h3>Programming Languages</h3>
+          <p>Java, JavaScript, TypeScript, PHP, Python, HTML, CSS</p>
+        </article>
+        <article class="skill-block">
+          <h3>Frameworks & Libraries</h3>
+          <p>React, React Native, Flask, Tailwind CSS, REST APIs</p>
+        </article>
+        <article class="skill-block">
+          <h3>Databases & Tools</h3>
+          <p>MySQL, Appwrite, Git/GitHub, NetBeans, VS Code</p>
+        </article>
+        <article class="skill-block">
+          <h3>AI & Data Science</h3>
+          <p>Machine Learning, Data Analysis, Pandas, NumPy (basics), Matplotlib (basics), Seaborn (basics), RAG-based AI Chatbots, OpenAI, Pinecone, NLP</p>
+        </article>
+        <article class="skill-block">
+          <h3>Real-Time & Networking</h3>
+          <p>WebSocket, real-time application development</p>
+        </article>
+        <article class="skill-block">
+          <h3>Other Skills</h3>
+          <p>IoT basics, mobile app development, full-stack application development</p>
+        </article>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact section-alt">
-        <h2 class="section-title">Get In <span>Touch</span></h2>
-        <div class="contact-content">
-            <p>Interested in collaborating or have questions? Feel free to reach out!</p>
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group full">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" placeholder="Subject" required>
-                </div>
-                <div class="form-group full">
-                    <label for="message">Message</label>
-                    <textarea id="message" placeholder="Your Message" required></textarea>
-                </div>
-                <div class="form-buttons">
-                    <button type="submit" class="btn" id="submitBtn">Send Message</button>
-                    <a href="https://wa.me/94784342391?text=Hello%20Riflan,%20I'm%20interested%20in%20your%20profile" class="btn btn-outline">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
-                </div>
-            </form>
-        </div>
+    <section class="section reveal" id="education">
+      <div class="section-head">
+        <p class="section-tag">Education</p>
+        <h2>Academic and language background</h2>
+      </div>
+      <div class="edu-grid">
+        <article class="edu-card">
+          <h3>BSc (Hons) Software Engineering</h3>
+          <p>Birmingham City University | 2022 - 2026</p>
+        </article>
+        <article class="edu-card">
+          <h3>Diploma in English</h3>
+          <p>ESOFT | 2024 - 2025</p>
+        </article>
+        <article class="edu-card">
+          <h3>Diploma in Machine Learning & AI</h3>
+          <p>ICBS International | 2025 - 2026</p>
+        </article>
+        <article class="edu-card">
+          <h3>Languages</h3>
+          <p>English (Conversational), Tamil (Native), Sinhala (Conversational)</p>
+        </article>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/riflan"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-kaggle"></i></a>
-            <a href="https://wa.me/94784342391?text=Hello%20Riflan,%20I'm%20interested%20in%20your%20profile" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        <p>&copy; 2024 N.M. Riflan Mohamed. All rights reserved.</p>
-    </footer>
+    <section class="section contact-section reveal" id="contact">
+      <div class="section-head">
+        <p class="section-tag">Contact</p>
+        <h2>Open to software engineering and AI opportunities</h2>
+      </div>
+      <p class="contact-copy">I am available for internships, collaborations, and project-based work in software engineering, AI, and full-stack development.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="https://www.linkedin.com/in/riflan" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        <a class="contact-link" href="https://github.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a class="contact-link" href="mailto:rizlanahmd4545@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+      </div>
+    </section>
+  </main>
 
-    <!-- Floating action buttons -->
-    <div class="floating-buttons">
-        <a href="#" class="floating-btn cv" id="downloadCv">
-            <i class="fas fa-download"></i>
-            <span class="btn-label">Download CV</span>
-        </a>
-        <a href="https://wa.me/94784342391?text=Hello%20Riflan,%20I'm%20interested%20in%20your%20profile" class="floating-btn whatsapp">
-            <i class="fab fa-whatsapp"></i>
-            <span class="btn-label">Contact WhatsApp</span>
-        </a>
-    </div>
+  <footer class="site-footer">
+    <p>© 2026 Riflan Mohamed. Built with HTML, CSS, JavaScript, and GSAP.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
