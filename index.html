@@ -1,230 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <link rel="shortcut icon" href="log.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RIFLAN — Software Engineer & AI Builder</title>
+  <title>RIFLAN — Software Engineer</title>
   <meta name="description" content="Riflan Mohamed — Software Engineering Student, AI Engineer, Full-Stack Builder.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=IBM+Plex+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@200;300;400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- CANVAS PARTICLES -->
   <canvas id="particleCanvas"></canvas>
-
-  <!-- CUSTOM CURSOR -->
   <div id="cursorDot"></div>
   <div id="cursorRing"></div>
-
-  <!-- NOISE OVERLAY -->
   <div class="noise-overlay" aria-hidden="true"></div>
 
-  <!-- PRELOADER -->
   <div id="preloader">
-    <div class="pre-left">
-      <div class="pre-logo-chars">
-        <span class="plc">R</span>
-        <span class="plc">I</span>
-        <span class="plc">F</span>
-        <span class="plc">L</span>
-        <span class="plc">A</span>
-        <span class="plc">N</span>
+    <div class="pre-inner">
+      <div class="pre-logo-wrap">
+        <span class="plc" data-char="R">R</span>
+        <span class="plc" data-char="I">I</span>
+        <span class="plc" data-char="F">F</span>
+        <span class="plc" data-char="L">L</span>
+        <span class="plc" data-char="A">A</span>
+        <span class="plc" data-char="N">N</span>
       </div>
-      <div class="pre-line-wrap"><div class="pre-line" id="preLine"></div></div>
-      <div class="pre-status">
-        <span class="pre-label">INITIALIZING</span>
+      <div class="pre-bar-wrap"><div class="pre-bar" id="preBar"></div></div>
+      <div class="pre-foot">
+        <span class="pre-label" id="preLabel">INITIALIZING SYSTEM</span>
         <span class="pre-num" id="preNum">000</span>
       </div>
     </div>
-    <div class="pre-right">
-      <p class="pre-tagline" id="preTagline">ENGINEERING<br>DIGITAL FUTURES</p>
+    <div class="pre-panels">
+      <div class="pre-panel pre-panel-l"></div>
+      <div class="pre-panel pre-panel-r"></div>
     </div>
   </div>
 
-  <!-- NAVIGATION -->
   <header id="nav">
     <div class="nav-left">
-      <a href="#home" class="nav-brand">RM<span class="nb-sym">©</span></a>
-      <div class="nav-sep"></div>
-      <span class="nav-sub mono">PORTFOLIO 2026</span>
+      <a href="#home" class="nav-brand">RM</a>
+      <span class="nav-dot"></span>
+      <span class="nav-sub">PORTFOLIO 2026</span>
     </div>
     <nav class="nav-center" id="navLinks">
-      <a href="#about"><span class="nl-num">01</span>About</a>
-      <a href="#experience"><span class="nl-num">02</span>Xp</a>
-      <a href="#projects"><span class="nl-num">03</span>Work</a>
-      <a href="#skills"><span class="nl-num">04</span>Skills</a>
-      <a href="#contact"><span class="nl-num">05</span>Contact</a>
+      <a href="#about"><span>01</span>About</a>
+      <a href="#experience"><span>02</span>Experience</a>
+      <a href="#projects"><span>03</span>Work</a>
+      <a href="#skills"><span>04</span>Skills</a>
+      <a href="#contact"><span>05</span>Contact</a>
     </nav>
     <div class="nav-right">
-      <div class="nav-badge">
-        <span class="nb-pulse"></span>
-        <span class="mono">OPEN TO WORK</span>
+      <div class="nav-status">
+        <span class="ns-dot"></span>
+        <span>OPEN TO WORK</span>
       </div>
-      <button id="themeBtn" class="theme-btn mono" aria-label="Toggle theme"><span id="themeLbl">DARK</span></button>
-      <button id="menuBtn" class="menu-btn" aria-label="Menu">
-        <span class="mb-bar"></span>
-        <span class="mb-bar"></span>
+      <button id="themeBtn">
+        <span id="themeLbl">DARK</span>
+      </button>
+      <button id="menuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
       </button>
     </div>
   </header>
 
-  <!-- FULLSCREEN MENU -->
-  <div id="fullMenu" class="full-menu">
-    <div class="fm-overlay"></div>
+  <div id="fullMenu">
+    <div class="fm-bg"></div>
     <nav class="fm-nav">
-      <a href="#about" class="fm-link"><em class="fm-n">01</em><span>About</span></a>
-      <a href="#experience" class="fm-link"><em class="fm-n">02</em><span>Experience</span></a>
-      <a href="#projects" class="fm-link"><em class="fm-n">03</em><span>Projects</span></a>
-      <a href="#skills" class="fm-link"><em class="fm-n">04</em><span>Skills</span></a>
-      <a href="#education" class="fm-link"><em class="fm-n">05</em><span>Education</span></a>
-      <a href="#contact" class="fm-link"><em class="fm-n">06</em><span>Contact</span></a>
+      <a href="#about" class="fm-link"><span class="fm-n">01</span><span class="fm-t">About</span></a>
+      <a href="#experience" class="fm-link"><span class="fm-n">02</span><span class="fm-t">Experience</span></a>
+      <a href="#projects" class="fm-link"><span class="fm-n">03</span><span class="fm-t">Projects</span></a>
+      <a href="#skills" class="fm-link"><span class="fm-n">04</span><span class="fm-t">Skills</span></a>
+      <a href="#education" class="fm-link"><span class="fm-n">05</span><span class="fm-t">Education</span></a>
+      <a href="#contact" class="fm-link"><span class="fm-n">06</span><span class="fm-t">Contact</span></a>
     </nav>
-    <div class="fm-foot mono">RIFLAN MOHAMED · SRI LANKA · 2026</div>
+    <div class="fm-foot">RIFLAN MOHAMED · SRI LANKA · 2026</div>
   </div>
 
   <main>
 
-    <!-- ██████████ HERO ██████████ -->
     <section id="home" class="hero">
-      <div class="hero-bg-text" aria-hidden="true">RIFLAN</div>
-
-      <div class="hero-top">
-        <div class="hero-eyebrow mono" id="hEyebrow">
-          <span class="he-dash"></span>
-          <span>SOFTWARE ENGINEER & AI BUILDER</span>
-          <span class="he-dash"></span>
-        </div>
+      <div class="hero-grid-lines" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
       </div>
 
-      <div class="hero-center">
+      <div class="hero-eyebrow" id="hEyebrow">
+        <span class="he-line"></span>
+        <span>SOFTWARE ENGINEER & AI BUILDER</span>
+        <span class="he-line"></span>
+      </div>
+
+      <div class="hero-name-wrap">
         <h1 class="hero-name">
           <div class="hn-row" id="hnRow1">
-            <span class="hn-solid">RIF</span><span class="hn-italic">flan</span>
+            <span class="hn-a">RIF</span><span class="hn-b">flan</span>
           </div>
-          <div class="hn-row" id="hnRow2">
-            <span class="hn-outline">Mo</span><span class="hn-solid">hamed</span>
+          <div class="hn-row hn-row2" id="hnRow2">
+            <span class="hn-c">Mo</span><span class="hn-a">hamed</span>
           </div>
         </h1>
+        <div class="hero-year" id="heroYear">2026</div>
       </div>
 
       <div class="hero-bottom">
         <div class="hero-bl">
-          <p class="hero-desc mono" id="heroDesc">
+          <p class="hero-desc" id="heroDesc">
             Aspiring intern & AI enthusiast.<br>
             Java · Python · React · React Native.
           </p>
           <div class="hero-btns" id="heroBtns">
-            <a href="#projects" class="hbtn-main" id="hbtnMain">
-              <span class="hbtn-bg"></span>
-              <span class="hbtn-txt">VIEW WORK</span>
-              <span class="hbtn-icon"><i class="fa-solid fa-arrow-right"></i></span>
+            <a href="#projects" class="hbtn-primary" id="hbtnMain">
+              <span class="hbp-fill"></span>
+              <span class="hbp-txt">VIEW WORK</span>
+              <i class="fa-solid fa-arrow-right"></i>
             </a>
-            <a href="#contact" class="hbtn-line">CONTACT</a>
+            <a href="#contact" class="hbtn-ghost">CONTACT</a>
           </div>
         </div>
 
         <div class="hero-br">
-          <div class="hero-stats-grid" id="heroStats">
-            <div class="hsg-item">
-              <div class="hsg-n"><span class="hsg-count" data-t="6">0</span>+</div>
-              <div class="hsg-lbl mono">PROJECTS</div>
+          <div class="hero-stats" id="heroStats">
+            <div class="hs-item">
+              <div class="hs-n"><span class="hs-count" data-t="6">0</span><span class="hs-plus">+</span></div>
+              <div class="hs-l">PROJECTS</div>
             </div>
-            <div class="hsg-item">
-              <div class="hsg-n"><span class="hsg-count" data-t="3">0</span>+</div>
-              <div class="hsg-lbl mono">DIPLOMAS</div>
+            <div class="hs-sep"></div>
+            <div class="hs-item">
+              <div class="hs-n"><span class="hs-count" data-t="3">0</span><span class="hs-plus">+</span></div>
+              <div class="hs-l">DIPLOMAS</div>
             </div>
-            <div class="hsg-item">
-              <div class="hsg-n"><span class="hsg-count" data-t="5">0</span>+</div>
-              <div class="hsg-lbl mono">LANGUAGES</div>
+            <div class="hs-sep"></div>
+            <div class="hs-item">
+              <div class="hs-n"><span class="hs-count" data-t="5">0</span><span class="hs-plus">+</span></div>
+              <div class="hs-l">LANGUAGES</div>
             </div>
-            <div class="hsg-item">
-              <div class="hsg-n"><span class="hsg-count" data-t="2026">0</span></div>
-              <div class="hsg-lbl mono">INTERN YEAR</div>
+            <div class="hs-sep"></div>
+            <div class="hs-item">
+              <div class="hs-n"><span class="hs-count" data-t="2026">0</span></div>
+              <div class="hs-l">INTERN YEAR</div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="hero-role-badge" id="heroRoleBadge">
-        <span class="hrb-label mono">CURRENTLY BUILDING AS</span>
-        <span class="hrb-role" id="hrbRole">Software Engineer</span>
+        <span class="hrb-l">CURRENTLY</span>
+        <span class="hrb-r" id="hrbRole">Software Engineer</span>
       </div>
 
-      <div class="hero-scroll-cue" id="heroScrollCue">
-        <div class="hsc-wheel"><div class="hsc-ball"></div></div>
-        <span class="mono">SCROLL DOWN</span>
+      <div class="hero-scroll" id="heroScroll">
+        <div class="hs-wheel"><div class="hs-ball"></div></div>
+        <span>SCROLL</span>
       </div>
+
+      <div class="hero-bg-word" aria-hidden="true">RIFLAN</div>
     </section>
 
-    <!-- MARQUEE -->
-    <div class="marquee-wrap" id="marqueeWrap">
-      <div class="mq-track" id="mqTrack">
-        <span class="mq-word">AI ENGINEER</span><span class="mq-dot">◆</span>
-        <span class="mq-word">REACT NATIVE</span><span class="mq-dot">◆</span>
-        <span class="mq-word">FULL-STACK DEV</span><span class="mq-dot">◆</span>
-        <span class="mq-word">MACHINE LEARNING</span><span class="mq-dot">◆</span>
-        <span class="mq-word">WEBSOCKET</span><span class="mq-dot">◆</span>
-        <span class="mq-word">OPEN TO INTERNSHIPS</span><span class="mq-dot">◆</span>
-        <span class="mq-word">AI ENGINEER</span><span class="mq-dot">◆</span>
-        <span class="mq-word">REACT NATIVE</span><span class="mq-dot">◆</span>
-        <span class="mq-word">FULL-STACK DEV</span><span class="mq-dot">◆</span>
-        <span class="mq-word">MACHINE LEARNING</span><span class="mq-dot">◆</span>
-        <span class="mq-word">WEBSOCKET</span><span class="mq-dot">◆</span>
-        <span class="mq-word">OPEN TO INTERNSHIPS</span><span class="mq-dot">◆</span>
+    <div class="marquee-band" id="marqueeBand">
+      <div class="mq-inner" id="mqInner">
+        <span>AI ENGINEER</span><span class="mq-sym">✦</span>
+        <span>REACT NATIVE</span><span class="mq-sym">✦</span>
+        <span>FULL-STACK</span><span class="mq-sym">✦</span>
+        <span>MACHINE LEARNING</span><span class="mq-sym">✦</span>
+        <span>WEBSOCKET</span><span class="mq-sym">✦</span>
+        <span>OPEN TO WORK</span><span class="mq-sym">✦</span>
+        <span>AI ENGINEER</span><span class="mq-sym">✦</span>
+        <span>REACT NATIVE</span><span class="mq-sym">✦</span>
+        <span>FULL-STACK</span><span class="mq-sym">✦</span>
+        <span>MACHINE LEARNING</span><span class="mq-sym">✦</span>
+        <span>WEBSOCKET</span><span class="mq-sym">✦</span>
+        <span>OPEN TO WORK</span><span class="mq-sym">✦</span>
       </div>
     </div>
 
-    <!-- ██████████ ABOUT ██████████ -->
     <section id="about" class="sect">
-      <div class="sect-tag mono">[02 · ABOUT]</div>
+      <div class="sect-tag">[ 02 · ABOUT ]</div>
       <div class="about-layout">
         <div class="al-left">
           <h2 class="section-h">
-            <span class="sh-line sh-reveal">Product-focused</span>
-            <span class="sh-line sh-reveal sh-italic">engineering</span>
-            <span class="sh-line sh-reveal">with AI delivery.</span>
+            <span class="sl">Product-focused</span>
+            <span class="sl sl-i">engineering</span>
+            <span class="sl">with AI delivery.</span>
           </h2>
         </div>
         <div class="al-right">
-          <p class="about-lead sh-reveal-fade">Skilled in building scalable, data-driven applications and AI solutions. From Flask + OpenAI backends to React Native frontends — delivering complete products with real-world impact.</p>
-          <p class="about-body sh-reveal-fade">Familiar with databases, REST APIs, Git/GitHub, and modern development workflows. Passionate about AI, Machine Learning, and innovative technologies with a strong problem-solving mindset.</p>
-          <div class="about-bullets">
-            <div class="ab-row sh-reveal-slide"><i class="fa-solid fa-code"></i><span>Full-Stack Web &amp; Mobile Dev</span></div>
-            <div class="ab-row sh-reveal-slide"><i class="fa-solid fa-brain"></i><span>RAG-Based AI Chatbots &amp; NLP</span></div>
-            <div class="ab-row sh-reveal-slide"><i class="fa-solid fa-bolt"></i><span>Real-Time WebSocket Systems</span></div>
-            <div class="ab-row sh-reveal-slide"><i class="fa-solid fa-database"></i><span>Data-Driven Application Architecture</span></div>
+          <p class="about-lead">Skilled in building scalable, data-driven applications and AI solutions. From Flask + OpenAI backends to React Native frontends — delivering complete products with real-world impact.</p>
+          <p class="about-body">Familiar with databases, REST APIs, Git/GitHub, and modern development workflows. Passionate about AI, Machine Learning, and innovative technologies.</p>
+          <div class="about-list">
+            <div class="ab-item"><i class="fa-solid fa-code"></i><span>Full-Stack Web & Mobile Dev</span></div>
+            <div class="ab-item"><i class="fa-solid fa-brain"></i><span>RAG-Based AI Chatbots & NLP</span></div>
+            <div class="ab-item"><i class="fa-solid fa-bolt"></i><span>Real-Time WebSocket Systems</span></div>
+            <div class="ab-item"><i class="fa-solid fa-database"></i><span>Data-Driven Application Architecture</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ██████████ EXPERIENCE ██████████ -->
     <section id="experience" class="sect">
-      <div class="sect-tag mono">[03 · EXPERIENCE]</div>
+      <div class="sect-tag">[ 03 · EXPERIENCE ]</div>
       <h2 class="section-h">
-        <span class="sh-line sh-reveal">Current</span>
-        <span class="sh-line sh-reveal sh-italic">Journey.</span>
+        <span class="sl">Current</span>
+        <span class="sl sl-i">Journey.</span>
       </h2>
-      <div class="exp-card sh-reveal-card">
-        <div class="ec-left">
-          <div class="ec-idx mono">01</div>
-          <div class="ec-live-wrap">
-            <span class="ec-live-dot"></span>
-            <span class="ec-live-txt mono">ACTIVE</span>
+      <div class="exp-card">
+        <div class="ec-side">
+          <div class="ec-num">01</div>
+          <div class="ec-live">
+            <span class="ecl-dot"></span>
+            <span>ACTIVE</span>
           </div>
         </div>
-        <div class="ec-body">
-          <div class="ec-top">
+        <div class="ec-main">
+          <div class="ec-header">
             <div>
-              <p class="ec-co mono">INNOV8SMART</p>
-              <h3 class="ec-role">React Native Developer<br>&amp; AI Trainee</h3>
+              <p class="ec-company">INNOV8SMART</p>
+              <h3 class="ec-title">React Native Developer<br>& AI Trainee</h3>
             </div>
-            <div class="ec-period mono">FEB 2026 — PRESENT</div>
+            <span class="ec-date">FEB 2026 — PRESENT</span>
           </div>
           <ul class="ec-list">
             <li>Building cross-platform mobile apps with React Native</li>
@@ -238,15 +234,14 @@
       </div>
     </section>
 
-    <!-- ██████████ PROJECTS ██████████ -->
     <section id="projects" class="sect">
-      <div class="sect-tag mono">[04 · SELECTED WORK]</div>
-      <div class="proj-header">
+      <div class="sect-tag">[ 04 · SELECTED WORK ]</div>
+      <div class="proj-head">
         <h2 class="section-h">
-          <span class="sh-line sh-reveal">Selected</span>
-          <span class="sh-line sh-reveal sh-italic">Work.</span>
+          <span class="sl">Selected</span>
+          <span class="sl sl-i">Work.</span>
         </h2>
-        <div class="proj-filters mono" id="projFilters">
+        <div class="proj-filters" id="projFilters">
           <button class="pf active" data-f="all">ALL</button>
           <button class="pf" data-f="ai">AI</button>
           <button class="pf" data-f="mobile">MOBILE</button>
@@ -255,201 +250,198 @@
       </div>
 
       <div class="proj-list" id="projList">
-        <article class="proj-item" data-cats="ai web">
-          <div class="pi-num mono">01</div>
-          <div class="pi-name">
+        <article class="proj-row" data-cats="ai web">
+          <div class="pr-num">01</div>
+          <div class="pr-info">
             <h3>Mediguide Medical Chatbot</h3>
             <p>AI-powered medical assistant with real-time conversational AI and symptom analysis.</p>
           </div>
-          <div class="pi-tech mono">Python · Flask · OpenAI · Pinecone</div>
-          <div class="pi-cat cat-ai">AI</div>
-          <div class="pi-bar"></div>
+          <div class="pr-stack">Python · Flask · OpenAI · Pinecone</div>
+          <div class="pr-tag t-ai">AI</div>
+          <div class="pr-bar"></div>
         </article>
-        <article class="proj-item" data-cats="ai web">
-          <div class="pi-num mono">02</div>
-          <div class="pi-name">
+        <article class="proj-row" data-cats="ai web">
+          <div class="pr-num">02</div>
+          <div class="pr-info">
             <h3>Universal Research Assistant</h3>
             <p>Multi-source AI research tool with citations, paper summarization and news aggregation.</p>
           </div>
-          <div class="pi-tech mono">OpenAI · Pinecone · arXiv API · Flask</div>
-          <div class="pi-cat cat-ai">AI</div>
-          <div class="pi-bar"></div>
+          <div class="pr-stack">OpenAI · Pinecone · arXiv API · Flask</div>
+          <div class="pr-tag t-ai">AI</div>
+          <div class="pr-bar"></div>
         </article>
-        <article class="proj-item" data-cats="mobile web">
-          <div class="pi-num mono">03</div>
-          <div class="pi-name">
+        <article class="proj-row" data-cats="mobile web">
+          <div class="pr-num">03</div>
+          <div class="pr-info">
             <h3>PingMe Real-Time Chat</h3>
             <p>Cross-platform chat app with WebSocket architecture and full user authentication.</p>
           </div>
-          <div class="pi-tech mono">Java · React Native · WebSocket · MySQL</div>
-          <div class="pi-cat cat-mob">MOBILE</div>
-          <div class="pi-bar"></div>
+          <div class="pr-stack">Java · React Native · WebSocket · MySQL</div>
+          <div class="pr-tag t-mob">MOBILE</div>
+          <div class="pr-bar"></div>
         </article>
-        <article class="proj-item" data-cats="mobile web">
-          <div class="pi-num mono">04</div>
-          <div class="pi-name">
+        <article class="proj-row" data-cats="mobile web">
+          <div class="pr-num">04</div>
+          <div class="pr-info">
             <h3>Qiera Real Estate App</h3>
             <p>Property listings and management with map integration and responsive UI design.</p>
           </div>
-          <div class="pi-tech mono">React Native · Appwrite · Tailwind · MySQL</div>
-          <div class="pi-cat cat-mob">MOBILE</div>
-          <div class="pi-bar"></div>
+          <div class="pr-stack">React Native · Appwrite · Tailwind · MySQL</div>
+          <div class="pr-tag t-mob">MOBILE</div>
+          <div class="pr-bar"></div>
         </article>
-        <article class="proj-item" data-cats="web">
-          <div class="pi-num mono">05</div>
-          <div class="pi-name">
+        <article class="proj-row" data-cats="web">
+          <div class="pr-num">05</div>
+          <div class="pr-info">
             <h3>ZGen Cinema Reservation</h3>
             <p>Full-stack reservation system with movie scheduling and QR ticket generation.</p>
           </div>
-          <div class="pi-tech mono">Java · MySQL · Jasper Reports</div>
-          <div class="pi-cat cat-web">WEB</div>
-          <div class="pi-bar"></div>
+          <div class="pr-stack">Java · MySQL · Jasper Reports</div>
+          <div class="pr-tag t-web">WEB</div>
+          <div class="pr-bar"></div>
         </article>
-        <article class="proj-item" data-cats="mobile web">
-          <div class="pi-num mono">06</div>
-          <div class="pi-name">
-            <h3>Momento, Booksy &amp; Portfolio</h3>
+        <article class="proj-row" data-cats="mobile web">
+          <div class="pr-num">06</div>
+          <div class="pr-info">
+            <h3>Momento, Booksy & Portfolio</h3>
             <p>Todo app, book discovery and personal portfolio — clean UI/UX and reliable delivery.</p>
           </div>
-          <div class="pi-tech mono">React Native · TypeScript · JavaScript</div>
-          <div class="pi-cat cat-mob">MOBILE</div>
-          <div class="pi-bar"></div>
+          <div class="pr-stack">React Native · TypeScript · JavaScript</div>
+          <div class="pr-tag t-mob">MOBILE</div>
+          <div class="pr-bar"></div>
         </article>
       </div>
     </section>
 
-    <!-- ██████████ SKILLS ██████████ -->
     <section id="skills" class="sect">
-      <div class="sect-tag mono">[06 · SKILLS]</div>
+      <div class="sect-tag">[ 06 · SKILLS ]</div>
       <h2 class="section-h">
-        <span class="sh-line sh-reveal">Technical</span>
-        <span class="sh-line sh-reveal sh-italic">Arsenal.</span>
+        <span class="sl">Technical</span>
+        <span class="sl sl-i">Arsenal.</span>
       </h2>
-      <div class="skills-wall" id="skillsWall">
-        <div class="sw-group sh-reveal-card">
-          <div class="swg-label mono">LANGUAGES</div>
-          <div class="swg-tags">
-            <span style="--s:1.4rem">Java</span>
-            <span style="--s:1.2rem">JavaScript</span>
-            <span style="--s:1.1rem">TypeScript</span>
-            <span style="--s:1rem">Python</span>
-            <span style="--s:.9rem">PHP</span>
-            <span style="--s:.85rem">HTML/CSS</span>
+      <div class="skills-grid" id="skillsGrid">
+        <div class="sg-block">
+          <div class="sg-label">LANGUAGES</div>
+          <div class="sg-items">
+            <span style="--fs:1.5rem">Java</span>
+            <span style="--fs:1.25rem">JavaScript</span>
+            <span style="--fs:1.15rem">TypeScript</span>
+            <span style="--fs:1.05rem">Python</span>
+            <span style="--fs:.9rem">PHP</span>
+            <span style="--fs:.85rem">HTML/CSS</span>
           </div>
         </div>
-        <div class="sw-group sh-reveal-card">
-          <div class="swg-label mono">FRAMEWORKS</div>
-          <div class="swg-tags">
-            <span style="--s:1.4rem">React Native</span>
-            <span style="--s:1.2rem">React</span>
-            <span style="--s:1.1rem">Flask</span>
-            <span style="--s:1rem">Tailwind CSS</span>
-            <span style="--s:.9rem">REST APIs</span>
+        <div class="sg-block">
+          <div class="sg-label">FRAMEWORKS</div>
+          <div class="sg-items">
+            <span style="--fs:1.5rem">React Native</span>
+            <span style="--fs:1.2rem">React</span>
+            <span style="--fs:1.1rem">Flask</span>
+            <span style="--fs:1rem">Tailwind CSS</span>
+            <span style="--fs:.9rem">REST APIs</span>
           </div>
         </div>
-        <div class="sw-group sh-reveal-card">
-          <div class="swg-label mono">AI & DATA</div>
-          <div class="swg-tags">
-            <span style="--s:1.4rem">OpenAI</span>
-            <span style="--s:1.3rem">Pinecone</span>
-            <span style="--s:1.1rem">RAG Chatbots</span>
-            <span style="--s:1rem">NLP</span>
-            <span style="--s:.95rem">Pandas</span>
-            <span style="--s:.85rem">NumPy</span>
-            <span style="--s:.8rem">Matplotlib</span>
+        <div class="sg-block">
+          <div class="sg-label">AI & DATA</div>
+          <div class="sg-items">
+            <span style="--fs:1.5rem">OpenAI</span>
+            <span style="--fs:1.3rem">Pinecone</span>
+            <span style="--fs:1.1rem">RAG Chatbots</span>
+            <span style="--fs:1rem">NLP</span>
+            <span style="--fs:.95rem">Pandas</span>
+            <span style="--fs:.85rem">NumPy</span>
+            <span style="--fs:.8rem">Matplotlib</span>
           </div>
         </div>
-        <div class="sw-group sh-reveal-card">
-          <div class="swg-label mono">TOOLS & DB</div>
-          <div class="swg-tags">
-            <span style="--s:1.3rem">MySQL</span>
-            <span style="--s:1.1rem">Appwrite</span>
-            <span style="--s:1rem">Git / GitHub</span>
-            <span style="--s:.9rem">WebSocket</span>
-            <span style="--s:.85rem">VS Code</span>
+        <div class="sg-block">
+          <div class="sg-label">TOOLS & DB</div>
+          <div class="sg-items">
+            <span style="--fs:1.3rem">MySQL</span>
+            <span style="--fs:1.1rem">Appwrite</span>
+            <span style="--fs:1rem">Git / GitHub</span>
+            <span style="--fs:.9rem">WebSocket</span>
+            <span style="--fs:.85rem">VS Code</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ██████████ EDUCATION ██████████ -->
     <section id="education" class="sect">
-      <div class="sect-tag mono">[07 · EDUCATION]</div>
+      <div class="sect-tag">[ 07 · EDUCATION ]</div>
       <h2 class="section-h">
-        <span class="sh-line sh-reveal">Academic</span>
-        <span class="sh-line sh-reveal sh-italic">Background.</span>
+        <span class="sl">Academic</span>
+        <span class="sl sl-i">Background.</span>
       </h2>
-      <div class="edu-rows">
-        <div class="edu-row sh-reveal-card">
-          <div class="er-yr mono">2022–2026</div>
-          <div class="er-info">
+      <div class="edu-list">
+        <div class="edu-row">
+          <div class="er-yr">2022–2026</div>
+          <div class="er-body">
             <h3>BSc (Hons) Software Engineering</h3>
             <p>Birmingham City University</p>
           </div>
-          <div class="er-badge badge-deg">DEGREE</div>
+          <span class="er-badge bd-deg">DEGREE</span>
         </div>
-        <div class="edu-row sh-reveal-card">
-          <div class="er-yr mono">2025–2026</div>
-          <div class="er-info">
-            <h3>Diploma in Machine Learning &amp; AI</h3>
+        <div class="edu-row">
+          <div class="er-yr">2025–2026</div>
+          <div class="er-body">
+            <h3>Diploma in Machine Learning & AI</h3>
             <p>ICBS International</p>
           </div>
-          <div class="er-badge badge-dip">DIPLOMA</div>
+          <span class="er-badge bd-dip">DIPLOMA</span>
         </div>
-        <div class="edu-row sh-reveal-card">
-          <div class="er-yr mono">2024–2025</div>
-          <div class="er-info">
+        <div class="edu-row">
+          <div class="er-yr">2024–2025</div>
+          <div class="er-body">
             <h3>Diploma in English</h3>
             <p>ESOFT</p>
           </div>
-          <div class="er-badge badge-dip">DIPLOMA</div>
+          <span class="er-badge bd-dip">DIPLOMA</span>
         </div>
-        <div class="edu-row sh-reveal-card">
-          <div class="er-yr mono">LANG</div>
-          <div class="er-info">
+        <div class="edu-row">
+          <div class="er-yr">LANG</div>
+          <div class="er-body">
             <h3>Multilingual</h3>
             <p>English (Conv.) · Tamil (Native) · Sinhala (Conv.)</p>
           </div>
-          <div class="er-badge badge-lng">LANGUAGE</div>
+          <span class="er-badge bd-lng">LANGUAGE</span>
         </div>
       </div>
     </section>
 
-    <!-- ██████████ CONTACT ██████████ -->
     <section id="contact" class="sect sect-contact">
-      <div class="sect-tag mono">[08 · CONTACT]</div>
-      <div class="contact-inner">
+      <div class="sect-tag">[ 08 · CONTACT ]</div>
+      <div class="contact-wrap">
         <h2 class="contact-h">
-          <span class="sh-line sh-reveal">Let's</span>
-          <span class="sh-line sh-reveal">Build</span>
-          <span class="sh-line sh-reveal sh-italic">Together.</span>
+          <span class="sl">Let's</span>
+          <span class="sl">Build</span>
+          <span class="sl sl-i">Together.</span>
         </h2>
         <div class="contact-right">
-          <p class="contact-sub sh-reveal-fade">Open to internships, collaborations, and project-based work in software engineering, AI, and full-stack development.</p>
+          <p class="contact-sub">Open to internships, collaborations, and project-based work in software engineering, AI, and full-stack development.</p>
           <div class="contact-links">
-            <a class="cl-item sh-reveal-link" href="https://www.linkedin.com/in/riflan" target="_blank" rel="noopener">
-              <div class="cli-icon"><i class="fa-brands fa-linkedin"></i></div>
-              <div class="cli-body">
-                <span class="cli-lbl mono">LINKEDIN</span>
-                <span class="cli-val">linkedin.com/in/riflan</span>
+            <a class="clink" href="https://www.linkedin.com/in/riflan" target="_blank" rel="noopener">
+              <div class="cl-icon"><i class="fa-brands fa-linkedin"></i></div>
+              <div class="cl-body">
+                <span class="cl-label">LINKEDIN</span>
+                <span class="cl-val">linkedin.com/in/riflan</span>
               </div>
-              <div class="cli-arr"><i class="fa-solid fa-arrow-up-right"></i></div>
+              <i class="fa-solid fa-arrow-up-right cl-arr"></i>
             </a>
-            <a class="cl-item sh-reveal-link" href="https://github.com" target="_blank" rel="noopener">
-              <div class="cli-icon"><i class="fa-brands fa-github"></i></div>
-              <div class="cli-body">
-                <span class="cli-lbl mono">GITHUB</span>
-                <span class="cli-val">github.com/riflan</span>
+            <a class="clink" href="https://github.com" target="_blank" rel="noopener">
+              <div class="cl-icon"><i class="fa-brands fa-github"></i></div>
+              <div class="cl-body">
+                <span class="cl-label">GITHUB</span>
+                <span class="cl-val">github.com/riflan</span>
               </div>
-              <div class="cli-arr"><i class="fa-solid fa-arrow-up-right"></i></div>
+              <i class="fa-solid fa-arrow-up-right cl-arr"></i>
             </a>
-            <a class="cl-item sh-reveal-link" href="mailto:rizlanahmd4545@gmail.com">
-              <div class="cli-icon"><i class="fa-solid fa-envelope"></i></div>
-              <div class="cli-body">
-                <span class="cli-lbl mono">EMAIL</span>
-                <span class="cli-val">rizlanahmd4545@gmail.com</span>
+            <a class="clink" href="mailto:rizlanahmd4545@gmail.com">
+              <div class="cl-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="cl-body">
+                <span class="cl-label">EMAIL</span>
+                <span class="cl-val">rizlanahmd4545@gmail.com</span>
               </div>
-              <div class="cli-arr"><i class="fa-solid fa-arrow-up-right"></i></div>
+              <i class="fa-solid fa-arrow-up-right cl-arr"></i>
             </a>
           </div>
         </div>
@@ -459,9 +451,9 @@
   </main>
 
   <footer class="site-footer">
-    <span class="sf-brand">RIFLAN MOHAMED</span>
-    <span class="mono sf-mid">BUILT WITH HTML · CSS · JS · GSAP</span>
-    <span class="mono sf-loc">SRI LANKA · © 2026</span>
+    <span class="sf-name">RIFLAN MOHAMED</span>
+    <span class="sf-mid">BUILT WITH HTML · CSS · JS · GSAP</span>
+    <span class="sf-loc">SRI LANKA · © 2026</span>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
