@@ -58,17 +58,17 @@
         <span class="ns-dot"></span>
         <span>OPEN TO WORK</span>
       </div>
-      <button id="themeBtn">
+      <button id="themeBtn" aria-label="Toggle theme">
         <span id="themeLbl">DARK</span>
       </button>
-      <button id="menuBtn" aria-label="Menu">
+      <button id="menuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="fullMenu">
         <span></span>
         <span></span>
       </button>
     </div>
   </header>
 
-  <div id="fullMenu">
+  <div id="fullMenu" aria-hidden="true">
     <div class="fm-bg"></div>
     <nav class="fm-nav">
       <a href="#about" class="fm-link"><span class="fm-n">01</span><span class="fm-t">About</span></a>
