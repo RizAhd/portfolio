@@ -1,44 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <link rel="shortcut icon" href="log.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Riflan Mohamed | Software Engineering Student</title>
   <meta name="description" content="Portfolio of Riflan Mohamed, Software Engineering Student and Aspiring AI Engineer.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="preloader" id="preloader" aria-hidden="true">
-    <div class="preloader-inner">
-      <p class="preloader-brand" id="preloaderBrand">RIFLAN</p>
-      <p class="preloader-sub" id="preloaderSub">Engineering Premium Digital Products</p>
-      <div class="preloader-line"><span id="preloaderProgress"></span></div>
-      <p class="preloader-count" id="preloaderCount">0%</p>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="pre-bg"></div>
+    <div class="pre-content">
+      <div class="pre-letters" id="preLetters">
+        <span>R</span><span>I</span><span>F</span><span>L</span><span>A</span><span>N</span>
+      </div>
+      <div class="pre-bar-wrap">
+        <div class="pre-bar" id="preBar"></div>
+      </div>
+      <p class="pre-pct" id="prePct">0</p>
     </div>
   </div>
 
-  <div class="bg-orb orb-1" aria-hidden="true"></div>
-  <div class="bg-orb orb-2" aria-hidden="true"></div>
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
 
-  <header class="site-header" id="siteHeader">
-    <a href="#home" class="brand">Riflan</a>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
-      <i class="fa-solid fa-moon"></i>
-    </button>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <nav class="site-nav" id="navLinks">
+  <!-- NAV -->
+  <header class="nav" id="mainNav">
+    <a href="#home" class="nav-logo">RM<span class="nav-logo-dot">.</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about" data-text="About">About</a>
+      <a href="#experience" data-text="Experience">Experience</a>
+      <a href="#projects" data-text="Projects">Projects</a>
+      <a href="#skills" data-text="Skills">Skills</a>
+      <a href="#education" data-text="Education">Education</a>
+      <a href="#contact" data-text="Contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+      </button>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav>
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
@@ -46,252 +62,445 @@
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </nav>
-  </header>
+  </div>
 
   <main>
+
+    <!-- HERO -->
     <section class="hero" id="home">
-      <p class="eyebrow">Software Engineering Student | Aspiring AI Engineer</p>
-      <h1 class="hero-title">Riflan Mohamed</h1>
-      <p class="hero-role">I build as a <span id="heroRoleText">Software Engineer</span></p>
-      <p class="hero-summary">
-        Aspiring Software Engineering Intern and AI enthusiast with strong expertise in Java, JavaScript, PHP, and Python,
-        complemented by experience in React, React Native, and full-stack development.
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-ghost">Let's Connect</a>
+      <div class="hero-noise"></div>
+      <div class="hero-grid-lines" aria-hidden="true">
+        <div class="gl gl-v gl-v1"></div>
+        <div class="gl gl-v gl-v2"></div>
+        <div class="gl gl-h gl-h1"></div>
+        <div class="gl gl-h gl-h2"></div>
       </div>
-      <div class="quick-stats reveal">
-        <article>
-          <h3>3+</h3>
-          <p>Diploma & Degree Paths</p>
-        </article>
-        <article>
-          <h3>6+</h3>
-          <p>Major Projects Built</p>
-        </article>
-        <article>
-          <h3>2026</h3>
-          <p>Current Internship Year</p>
-        </article>
-      </div>
-    </section>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
 
-    <section class="section reveal" id="value">
-      <div class="section-head">
-        <p class="section-tag">Professional Value</p>
-        <h2>Product-focused engineering with AI-driven delivery</h2>
-      </div>
-      <div class="value-grid">
-        <article class="value-card">
-          <h3>AI Product Development</h3>
-          <p>I design and build practical AI applications using Flask, OpenAI, Pinecone, and retrieval pipelines to deliver real user value.</p>
-        </article>
-        <article class="value-card">
-          <h3>Real-Time Experiences</h3>
-          <p>I implement high-performance real-time features with WebSocket architecture for chat, notifications, and responsive interactions.</p>
-        </article>
-        <article class="value-card">
-          <h3>Mobile + Full-Stack Execution</h3>
-          <p>From React Native frontends to backend integrations and API workflows, I deliver complete applications with production-ready foundations.</p>
-        </article>
-      </div>
-    </section>
+      <div class="hero-inner">
+        <div class="hero-badge" id="heroBadge">
+          <span class="badge-dot"></span>
+          <span>Available for Internships 2026</span>
+        </div>
 
-    <section class="section reveal" id="about">
-      <div class="section-head">
-        <p class="section-tag">About</p>
-        <h2>Building practical products with AI + software engineering</h2>
-      </div>
-      <div class="about-grid">
-        <p>
-          Skilled in building scalable and data-driven applications, developing AI solutions using Flask, OpenAI, and Pinecone,
-          and implementing real-time systems. Familiar with databases, REST APIs, Git/GitHub, and modern development tools.
-          Passionate about AI, Machine Learning, and innovative technologies, with a strong problem-solving mindset and eagerness
-          to learn, adapt, and contribute to impactful projects.
+        <h1 class="hero-name" id="heroName">
+          <span class="hn-line" id="hnLine1">Riflan</span>
+          <span class="hn-line" id="hnLine2">Mohamed</span>
+        </h1>
+
+        <div class="hero-role-wrap">
+          <p class="hero-role">I craft as a <strong id="heroRole">Software Engineer</strong></p>
+        </div>
+
+        <p class="hero-desc" id="heroDesc">
+          Aspiring Software Engineering Intern & AI enthusiast. Expert in Java, JavaScript, Python, React &amp; React Native — building full-stack and AI-powered products.
         </p>
-        <ul class="about-points">
-          <li><i class="fa-solid fa-code"></i> Full-stack web and mobile development</li>
-          <li><i class="fa-solid fa-brain"></i> RAG-based AI chatbots and NLP workflows</li>
-          <li><i class="fa-solid fa-bolt"></i> Real-time systems with WebSocket communication</li>
-          <li><i class="fa-solid fa-database"></i> Data-driven application architecture</li>
-        </ul>
+
+        <div class="hero-btns" id="heroBtns">
+          <a href="#projects" class="hbtn hbtn-primary">
+            <span>View Projects</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="#contact" class="hbtn hbtn-ghost">Let's Connect</a>
+        </div>
+
+        <div class="hero-stats" id="heroStats">
+          <div class="hstat">
+            <span class="hstat-num" data-count="3">0</span><span class="hstat-plus">+</span>
+            <p>Diploma &amp; Degree Paths</p>
+          </div>
+          <div class="hstat-divider"></div>
+          <div class="hstat">
+            <span class="hstat-num" data-count="6">0</span><span class="hstat-plus">+</span>
+            <p>Major Projects Built</p>
+          </div>
+          <div class="hstat-divider"></div>
+          <div class="hstat">
+            <span class="hstat-num" data-count="2026">0</span>
+            <p>Internship Year</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scroll-hint" id="heroScroll">
+        <span>scroll</span>
+        <div class="scroll-line"><div class="scroll-ball"></div></div>
       </div>
     </section>
 
-    <section class="section reveal" id="experience">
-      <div class="section-head">
-        <p class="section-tag">Experience</p>
-        <h2>Current professional journey</h2>
+    <!-- VALUE -->
+    <section class="section" id="value">
+      <div class="section-label">
+        <span class="sl-num">01</span>
+        <span class="sl-text">Professional Value</span>
       </div>
-      <article class="timeline-card">
-        <div class="timeline-meta">Innov8Smart | Feb 2026 - Present</div>
-        <h3>Intern - React Native Mobile Developer & AI Trainee</h3>
-        <ul>
+      <h2 class="section-title reveal-title">Product-focused engineering<br>with AI-driven delivery</h2>
+      <div class="value-grid">
+        <article class="vcard reveal-card" data-delay="0">
+          <div class="vcard-icon"><i class="fa-solid fa-microchip"></i></div>
+          <h3>AI Product Development</h3>
+          <p>Design and build practical AI applications using Flask, OpenAI, Pinecone, and retrieval pipelines to deliver real user value.</p>
+          <div class="vcard-line"></div>
+        </article>
+        <article class="vcard reveal-card" data-delay="0.1">
+          <div class="vcard-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3>Real-Time Experiences</h3>
+          <p>High-performance real-time features with WebSocket architecture for chat, notifications, and responsive interactions.</p>
+          <div class="vcard-line"></div>
+        </article>
+        <article class="vcard reveal-card" data-delay="0.2">
+          <div class="vcard-icon"><i class="fa-solid fa-layer-group"></i></div>
+          <h3>Mobile + Full-Stack Execution</h3>
+          <p>From React Native frontends to backend integrations and API workflows — complete applications with production-ready foundations.</p>
+          <div class="vcard-line"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="section-label">
+        <span class="sl-num">02</span>
+        <span class="sl-text">About</span>
+      </div>
+      <div class="about-layout">
+        <div class="about-left">
+          <h2 class="section-title reveal-title">Building practical products with AI + software engineering</h2>
+          <p class="about-desc reveal-fade">
+            Skilled in building scalable, data-driven applications and developing AI solutions using Flask, OpenAI, and Pinecone. Implementing real-time systems, REST APIs, and modern dev tools. Passionate about AI, Machine Learning, and innovative technologies with a strong problem-solving mindset.
+          </p>
+        </div>
+        <div class="about-right">
+          <ul class="about-pills">
+            <li class="reveal-pill"><i class="fa-solid fa-code"></i> Full-stack web and mobile development</li>
+            <li class="reveal-pill"><i class="fa-solid fa-brain"></i> RAG-based AI chatbots and NLP workflows</li>
+            <li class="reveal-pill"><i class="fa-solid fa-bolt"></i> Real-time systems with WebSocket</li>
+            <li class="reveal-pill"><i class="fa-solid fa-database"></i> Data-driven application architecture</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="section-label">
+        <span class="sl-num">03</span>
+        <span class="sl-text">Experience</span>
+      </div>
+      <h2 class="section-title reveal-title">Current professional journey</h2>
+      <div class="exp-block reveal-card" data-delay="0">
+        <div class="exp-top">
+          <div>
+            <p class="exp-company">Innov8Smart</p>
+            <h3 class="exp-role">Intern — React Native Mobile Developer &amp; AI Trainee</h3>
+          </div>
+          <span class="exp-date">Feb 2026 — Present</span>
+        </div>
+        <ul class="exp-list">
           <li>Developing cross-platform mobile applications using React Native.</li>
           <li>Working on AI-related projects, including integration with APIs and intelligent features.</li>
           <li>Collaborating with the team to implement real-time functionality, UI improvements, and backend integration.</li>
         </ul>
-      </article>
-    </section>
-
-    <section class="section reveal" id="projects">
-      <div class="section-head">
-        <p class="section-tag">Projects</p>
-        <h2>Selected work and product builds</h2>
-      </div>
-      <div class="project-filters" id="projectFilters" role="tablist" aria-label="Project categories">
-        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
-        <button class="filter-btn" data-filter="ai" role="tab" aria-selected="false">AI</button>
-        <button class="filter-btn" data-filter="mobile" role="tab" aria-selected="false">Mobile</button>
-        <button class="filter-btn" data-filter="fullstack" role="tab" aria-selected="false">Full-Stack</button>
-      </div>
-      <div class="projects-grid" id="projectsGrid">
-        <article class="project-card project-item" data-category="ai fullstack">
-          <h3>Mediguide Medical Chatbot</h3>
-          <p>AI-powered medical assistant providing health guidance and support.</p>
-          <p class="feature-line">Features: symptom checking, real-time responses, conversational AI, text support, personalized recommendations</p>
-          <p class="tech-line">Tech: Python, Flask, OpenAI, NLP, Pinecone</p>
-        </article>
-
-        <article class="project-card project-item" data-category="ai fullstack">
-          <h3>Universal Research Assistant</h3>
-          <p>AI research assistant for students and professionals.</p>
-          <p class="feature-line">Features: answers questions using multiple verified sources (Wikipedia, arXiv, NewsAPI), provides citations, summarizes latest papers and news</p>
-          <p class="tech-line">Tech: Python, OpenAI, Pinecone, Flask, Wikipedia API, arXiv API, NewsAPI</p>
-        </article>
-
-        <article class="project-card project-item" data-category="mobile fullstack">
-          <h3>PingMe Real-Time Chat Application</h3>
-          <p>Cross-platform chat app with instant messaging.</p>
-          <p class="feature-line">Features: real-time messaging, user authentication, WebSocket-based communication</p>
-          <p class="tech-line">Tech: Java (backend with Hibernate Servlets), React Native (frontend), MySQL, WebSocket, TypeScript, JavaScript</p>
-        </article>
-
-        <article class="project-card project-item" data-category="mobile fullstack">
-          <h3>Qiera Real Estate Application</h3>
-          <p>Web/mobile app for property listings and management.</p>
-          <p class="feature-line">Features: property search, listing management, map integration, user profiles, responsive UI</p>
-          <p class="tech-line">Tech: React Native, Appwrite, MySQL, REST APIs, Tailwind CSS</p>
-        </article>
-
-        <article class="project-card project-item" data-category="fullstack">
-          <h3>ZGen Cinema Reservation System</h3>
-          <p>Desktop/Web reservation system forked and enhanced.</p>
-          <p class="feature-line">Features: movie scheduling, cashier handling, snack bar management, QR ticket generation</p>
-          <p class="tech-line">Tech: Java, MySQL, Jasper Reports</p>
-        </article>
-
-        <article class="project-card project-item" data-category="mobile fullstack">
-          <h3>Other Projects</h3>
-          <p>Momento Todo App, Personal Portfolio Website, Booksy - Website.</p>
-          <p class="feature-line">Focused on practical UI/UX, clean code structure, and reliable feature delivery.</p>
-          <p class="tech-line">Tech: React Native, JavaScript, Java, TypeScript, web technologies</p>
-        </article>
+        <div class="exp-tag-row">
+          <span>React Native</span><span>AI/ML</span><span>WebSocket</span><span>APIs</span>
+        </div>
       </div>
     </section>
 
-    <section class="section reveal" id="approach">
-      <div class="section-head">
-        <p class="section-tag">Work Approach</p>
-        <h2>How I build modern applications</h2>
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="section-label">
+        <span class="sl-num">04</span>
+        <span class="sl-text">Projects</span>
       </div>
-      <div class="approach-grid">
-        <article class="approach-item">
-          <h3>1. Discover</h3>
+      <h2 class="section-title reveal-title">Selected work and product builds</h2>
+
+      <div class="filter-row" id="filterRow">
+        <button class="fb active" data-filter="all">All</button>
+        <button class="fb" data-filter="ai">AI</button>
+        <button class="fb" data-filter="mobile">Mobile</button>
+        <button class="fb" data-filter="fullstack">Full-Stack</button>
+      </div>
+
+      <div class="projects-wrap" id="projectsWrap">
+        <article class="pcard" data-cat="ai fullstack">
+          <div class="pcard-num">01</div>
+          <div class="pcard-body">
+            <h3>Mediguide Medical Chatbot</h3>
+            <p>AI-powered medical assistant providing health guidance and support with real-time conversational AI.</p>
+            <p class="pcard-features">Symptom checking · Real-time responses · Personalized recommendations</p>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-tags">
+              <span>Python</span><span>Flask</span><span>OpenAI</span><span>Pinecone</span>
+            </div>
+            <div class="pcard-cats">
+              <span class="pcat ai">AI</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="pcard" data-cat="ai fullstack">
+          <div class="pcard-num">02</div>
+          <div class="pcard-body">
+            <h3>Universal Research Assistant</h3>
+            <p>AI research assistant for students and professionals using multiple verified sources.</p>
+            <p class="pcard-features">Multi-source answers · Citations · Paper summarization · News aggregation</p>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-tags">
+              <span>Python</span><span>OpenAI</span><span>Pinecone</span><span>Flask</span>
+            </div>
+            <div class="pcard-cats">
+              <span class="pcat ai">AI</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="pcard" data-cat="mobile fullstack">
+          <div class="pcard-num">03</div>
+          <div class="pcard-body">
+            <h3>PingMe Real-Time Chat</h3>
+            <p>Cross-platform chat app with instant messaging and user authentication.</p>
+            <p class="pcard-features">Real-time messaging · WebSocket communication · User auth</p>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-tags">
+              <span>Java</span><span>React Native</span><span>MySQL</span><span>WebSocket</span>
+            </div>
+            <div class="pcard-cats">
+              <span class="pcat mobile">Mobile</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="pcard" data-cat="mobile fullstack">
+          <div class="pcard-num">04</div>
+          <div class="pcard-body">
+            <h3>Qiera Real Estate App</h3>
+            <p>Web/mobile app for property listings, management and discovery.</p>
+            <p class="pcard-features">Property search · Map integration · Listing management · Responsive UI</p>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-tags">
+              <span>React Native</span><span>Appwrite</span><span>Tailwind</span>
+            </div>
+            <div class="pcard-cats">
+              <span class="pcat mobile">Mobile</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="pcard" data-cat="fullstack">
+          <div class="pcard-num">05</div>
+          <div class="pcard-body">
+            <h3>ZGen Cinema Reservation</h3>
+            <p>Desktop/Web reservation system with movie scheduling and cashier handling.</p>
+            <p class="pcard-features">Movie scheduling · QR ticket generation · Snack bar management</p>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-tags">
+              <span>Java</span><span>MySQL</span><span>Jasper Reports</span>
+            </div>
+            <div class="pcard-cats">
+              <span class="pcat fullstack">Full-Stack</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="pcard" data-cat="mobile fullstack">
+          <div class="pcard-num">06</div>
+          <div class="pcard-body">
+            <h3>Other Projects</h3>
+            <p>Momento Todo App, Personal Portfolio, Booksy Website — focused on clean UI/UX and reliable delivery.</p>
+            <p class="pcard-features">React Native · JavaScript · TypeScript · Web technologies</p>
+          </div>
+          <div class="pcard-footer">
+            <div class="pcard-tags">
+              <span>React Native</span><span>TypeScript</span><span>JavaScript</span>
+            </div>
+            <div class="pcard-cats">
+              <span class="pcat mobile">Mobile</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="section" id="approach">
+      <div class="section-label">
+        <span class="sl-num">05</span>
+        <span class="sl-text">Work Approach</span>
+      </div>
+      <h2 class="section-title reveal-title">How I build modern applications</h2>
+      <div class="approach-track" id="approachTrack">
+        <div class="aitem reveal-card" data-delay="0">
+          <span class="aitem-step">01</span>
+          <h3>Discover</h3>
           <p>Define user needs, use cases, and expected business outcomes before implementation.</p>
-        </article>
-        <article class="approach-item">
-          <h3>2. Architect</h3>
+        </div>
+        <div class="aitem-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="aitem reveal-card" data-delay="0.1">
+          <span class="aitem-step">02</span>
+          <h3>Architect</h3>
           <p>Choose scalable technologies for frontend, backend, data, and AI integration layers.</p>
-        </article>
-        <article class="approach-item">
-          <h3>3. Build</h3>
+        </div>
+        <div class="aitem-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="aitem reveal-card" data-delay="0.2">
+          <span class="aitem-step">03</span>
+          <h3>Build</h3>
           <p>Develop clean, testable modules with modern tooling, responsive UI, and robust API design.</p>
-        </article>
-        <article class="approach-item">
-          <h3>4. Optimize</h3>
+        </div>
+        <div class="aitem-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="aitem reveal-card" data-delay="0.3">
+          <span class="aitem-step">04</span>
+          <h3>Optimize</h3>
           <p>Improve performance, usability, and reliability through iterations and feedback-driven refinement.</p>
-        </article>
+        </div>
       </div>
     </section>
 
-    <section class="section reveal" id="skills">
-      <div class="section-head">
-        <p class="section-tag">Skills</p>
-        <h2>Technical stack and capabilities</h2>
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="section-label">
+        <span class="sl-num">06</span>
+        <span class="sl-text">Skills</span>
       </div>
+      <h2 class="section-title reveal-title">Technical stack and capabilities</h2>
       <div class="skills-grid">
-        <article class="skill-block">
-          <h3>Programming Languages</h3>
-          <p>Java, JavaScript, TypeScript, PHP, Python, HTML, CSS</p>
-        </article>
-        <article class="skill-block">
-          <h3>Frameworks & Libraries</h3>
-          <p>React, React Native, Flask, Tailwind CSS, REST APIs</p>
-        </article>
-        <article class="skill-block">
-          <h3>Databases & Tools</h3>
-          <p>MySQL, Appwrite, Git/GitHub, NetBeans, VS Code</p>
-        </article>
-        <article class="skill-block">
-          <h3>AI & Data Science</h3>
-          <p>Machine Learning, Data Analysis, Pandas, NumPy (basics), Matplotlib (basics), Seaborn (basics), RAG-based AI Chatbots, OpenAI, Pinecone, NLP</p>
-        </article>
-        <article class="skill-block">
-          <h3>Real-Time & Networking</h3>
-          <p>WebSocket, real-time application development</p>
-        </article>
-        <article class="skill-block">
-          <h3>Other Skills</h3>
-          <p>IoT basics, mobile app development, full-stack application development</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section reveal" id="education">
-      <div class="section-head">
-        <p class="section-tag">Education</p>
-        <h2>Academic and language background</h2>
-      </div>
-      <div class="edu-grid">
-        <article class="edu-card">
-          <h3>BSc (Hons) Software Engineering</h3>
-          <p>Birmingham City University | 2022 - 2026</p>
-        </article>
-        <article class="edu-card">
-          <h3>Diploma in English</h3>
-          <p>ESOFT | 2024 - 2025</p>
-        </article>
-        <article class="edu-card">
-          <h3>Diploma in Machine Learning & AI</h3>
-          <p>ICBS International | 2025 - 2026</p>
-        </article>
-        <article class="edu-card">
+        <article class="skcard reveal-card" data-delay="0">
+          <div class="skcard-icon"><i class="fa-solid fa-terminal"></i></div>
           <h3>Languages</h3>
-          <p>English (Conversational), Tamil (Native), Sinhala (Conversational)</p>
+          <div class="sk-pills">
+            <span>Java</span><span>JavaScript</span><span>TypeScript</span><span>PHP</span><span>Python</span><span>HTML</span><span>CSS</span>
+          </div>
+        </article>
+        <article class="skcard reveal-card" data-delay="0.08">
+          <div class="skcard-icon"><i class="fa-solid fa-cubes"></i></div>
+          <h3>Frameworks & Libraries</h3>
+          <div class="sk-pills">
+            <span>React</span><span>React Native</span><span>Flask</span><span>Tailwind CSS</span><span>REST APIs</span>
+          </div>
+        </article>
+        <article class="skcard reveal-card" data-delay="0.16">
+          <div class="skcard-icon"><i class="fa-solid fa-database"></i></div>
+          <h3>Databases & Tools</h3>
+          <div class="sk-pills">
+            <span>MySQL</span><span>Appwrite</span><span>Git</span><span>GitHub</span><span>VS Code</span><span>NetBeans</span>
+          </div>
+        </article>
+        <article class="skcard reveal-card" data-delay="0.24">
+          <div class="skcard-icon"><i class="fa-solid fa-brain"></i></div>
+          <h3>AI & Data Science</h3>
+          <div class="sk-pills">
+            <span>OpenAI</span><span>Pinecone</span><span>NLP</span><span>RAG Chatbots</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span>
+          </div>
+        </article>
+        <article class="skcard reveal-card" data-delay="0.32">
+          <div class="skcard-icon"><i class="fa-solid fa-wifi"></i></div>
+          <h3>Real-Time & Networking</h3>
+          <div class="sk-pills">
+            <span>WebSocket</span><span>Real-Time Apps</span>
+          </div>
+        </article>
+        <article class="skcard reveal-card" data-delay="0.4">
+          <div class="skcard-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+          <h3>Other Skills</h3>
+          <div class="sk-pills">
+            <span>IoT Basics</span><span>Mobile Dev</span><span>Full-Stack</span>
+          </div>
         </article>
       </div>
     </section>
 
-    <section class="section contact-section reveal" id="contact">
-      <div class="section-head">
-        <p class="section-tag">Contact</p>
-        <h2>Open to software engineering and AI opportunities</h2>
+    <!-- EDUCATION -->
+    <section class="section" id="education">
+      <div class="section-label">
+        <span class="sl-num">07</span>
+        <span class="sl-text">Education</span>
       </div>
-      <p class="contact-copy">I am available for internships, collaborations, and project-based work in software engineering, AI, and full-stack development.</p>
-      <div class="contact-links">
-        <a class="contact-link" href="https://www.linkedin.com/in/riflan" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-        <a class="contact-link" href="https://github.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-        <a class="contact-link" href="mailto:rizlanahmd4545@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+      <h2 class="section-title reveal-title">Academic and language background</h2>
+      <div class="edu-list">
+        <article class="edu-row reveal-card" data-delay="0">
+          <div class="edu-year">2022–2026</div>
+          <div class="edu-info">
+            <h3>BSc (Hons) Software Engineering</h3>
+            <p>Birmingham City University</p>
+          </div>
+          <div class="edu-badge">Degree</div>
+        </article>
+        <article class="edu-row reveal-card" data-delay="0.1">
+          <div class="edu-year">2025–2026</div>
+          <div class="edu-info">
+            <h3>Diploma in Machine Learning &amp; AI</h3>
+            <p>ICBS International</p>
+          </div>
+          <div class="edu-badge">Diploma</div>
+        </article>
+        <article class="edu-row reveal-card" data-delay="0.2">
+          <div class="edu-year">2024–2025</div>
+          <div class="edu-info">
+            <h3>Diploma in English</h3>
+            <p>ESOFT</p>
+          </div>
+          <div class="edu-badge">Diploma</div>
+        </article>
+        <article class="edu-row reveal-card" data-delay="0.3">
+          <div class="edu-year">Languages</div>
+          <div class="edu-info">
+            <h3>Multilingual</h3>
+            <p>English (Conversational) · Tamil (Native) · Sinhala (Conversational)</p>
+          </div>
+          <div class="edu-badge">Language</div>
+        </article>
       </div>
     </section>
+
+    <!-- CONTACT -->
+    <section class="section contact-section" id="contact">
+      <div class="section-label">
+        <span class="sl-num">08</span>
+        <span class="sl-text">Contact</span>
+      </div>
+      <div class="contact-inner">
+        <h2 class="contact-heading reveal-title">Open to software<br>engineering &amp; AI<br><em>opportunities.</em></h2>
+        <div class="contact-right">
+          <p class="contact-copy reveal-fade">Available for internships, collaborations, and project-based work in software engineering, AI, and full-stack development.</p>
+          <div class="contact-links reveal-fade">
+            <a class="clink" href="https://www.linkedin.com/in/riflan" target="_blank" rel="noopener">
+              <i class="fa-brands fa-linkedin"></i>
+              <span>LinkedIn</span>
+              <i class="fa-solid fa-arrow-up-right-from-square clink-arrow"></i>
+            </a>
+            <a class="clink" href="https://github.com" target="_blank" rel="noopener">
+              <i class="fa-brands fa-github"></i>
+              <span>GitHub</span>
+              <i class="fa-solid fa-arrow-up-right-from-square clink-arrow"></i>
+            </a>
+            <a class="clink" href="mailto:rizlanahmd4545@gmail.com">
+              <i class="fa-solid fa-envelope"></i>
+              <span>rizlanahmd4545@gmail.com</span>
+              <i class="fa-solid fa-arrow-up-right-from-square clink-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
-    <p>© 2026 Riflan Mohamed. Built with HTML, CSS, JavaScript, and GSAP.</p>
+    <p>© 2026 Riflan Mohamed</p>
+    <p class="footer-built">Built with HTML · CSS · JavaScript · GSAP</p>
   </footer>
 
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
