@@ -405,21 +405,32 @@ document.querySelectorAll('.sect-tag').forEach(tag => {
   const menu = document.getElementById('fullMenu');
   if (!btn || !menu) return;
 
+  const menuItems = menu.querySelectorAll('.fm-t, .fm-n');
+  const desktopMq = window.matchMedia('(min-width: 901px)');
   let open = false;
 
   const openMenu = () => {
+    if (open) return;
     open = true;
     btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
     menu.classList.add('open');
-    gsap.to(menu.querySelectorAll('.fm-t, .fm-n'), {
+    menu.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+    gsap.set(menuItems, { y: '110%' });
+    gsap.to(menuItems, {
       y: '0%', stagger: 0.07, duration: 0.7, ease: 'expo-out', delay: 0.35
     });
   };
 
   const closeMenu = () => {
+    if (!open) return;
     open = false;
     btn.classList.remove('open');
-    gsap.to(menu.querySelectorAll('.fm-t, .fm-n'), {
+    btn.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+    gsap.to(menuItems, {
       y: '110%', stagger: { each: 0.04, from: 'end' }, duration: 0.32, ease: 'expo-in',
       onComplete: () => menu.classList.remove('open')
     });
@@ -427,6 +438,12 @@ document.querySelectorAll('.sect-tag').forEach(tag => {
 
   btn.addEventListener('click', () => open ? closeMenu() : openMenu());
   menu.querySelectorAll('.fm-link').forEach(l => l.addEventListener('click', closeMenu));
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+  });
+  desktopMq.addEventListener('change', e => {
+    if (e.matches) closeMenu();
+  });
 })();
 
 (function initTheme() {
@@ -570,7 +587,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const target = document.querySelector(a.getAttribute('href'));
     if (!target) return;
     e.preventDefault();
-    window.scrollTo({ top: target.offsetTop - 60, behavior: 'smooth' });
+    const navHeight = document.getElementById('nav')?.offsetHeight || 60;
+    const targetTop = target.getBoundingClientRect().top + window.scrollY - navHeight - 8;
+    window.scrollTo({ top: targetTop, behavior: 'smooth' });
   });
 });
 
