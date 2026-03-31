@@ -1,488 +1,454 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Riflan Mohamed | Software Engineering Student</title>
-  <meta name="description" content="Portfolio of Riflan Mohamed, Software Engineering Student and Aspiring AI Engineer.">
+  <title>RIFLAN — Software Engineer & AI Builder</title>
+  <meta name="description" content="Riflan Mohamed — Software Engineering Student, AI Engineer, Full-Stack Builder.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=IBM+Plex+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <!-- CANVAS PARTICLES -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursorDot"></div>
+  <div id="cursorRing"></div>
+
+  <!-- NOISE OVERLAY -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
   <!-- PRELOADER -->
-  <div class="preloader" id="preloader">
-    <div class="pre-bg"></div>
-    <div class="pre-content">
-      <div class="pre-letters" id="preLetters">
-        <span>R</span><span>I</span><span>F</span><span>L</span><span>A</span><span>N</span>
+  <div id="preloader">
+    <div class="pre-left">
+      <div class="pre-logo-chars">
+        <span class="plc">R</span>
+        <span class="plc">I</span>
+        <span class="plc">F</span>
+        <span class="plc">L</span>
+        <span class="plc">A</span>
+        <span class="plc">N</span>
       </div>
-      <div class="pre-bar-wrap">
-        <div class="pre-bar" id="preBar"></div>
+      <div class="pre-line-wrap"><div class="pre-line" id="preLine"></div></div>
+      <div class="pre-status">
+        <span class="pre-label">INITIALIZING</span>
+        <span class="pre-num" id="preNum">000</span>
       </div>
-      <p class="pre-pct" id="prePct">0</p>
+    </div>
+    <div class="pre-right">
+      <p class="pre-tagline" id="preTagline">ENGINEERING<br>DIGITAL FUTURES</p>
     </div>
   </div>
 
-  <!-- CURSOR -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-follower" id="cursorFollower"></div>
-
-  <!-- NAV -->
-  <header class="nav" id="mainNav">
-    <a href="#home" class="nav-logo">RM<span class="nav-logo-dot">.</span></a>
-    <nav class="nav-links" id="navLinks">
-      <a href="#about" data-text="About">About</a>
-      <a href="#experience" data-text="Experience">Experience</a>
-      <a href="#projects" data-text="Projects">Projects</a>
-      <a href="#skills" data-text="Skills">Skills</a>
-      <a href="#education" data-text="Education">Education</a>
-      <a href="#contact" data-text="Contact">Contact</a>
+  <!-- NAVIGATION -->
+  <header id="nav">
+    <div class="nav-left">
+      <a href="#home" class="nav-brand">RM<span class="nb-sym">©</span></a>
+      <div class="nav-sep"></div>
+      <span class="nav-sub mono">PORTFOLIO 2026</span>
+    </div>
+    <nav class="nav-center" id="navLinks">
+      <a href="#about"><span class="nl-num">01</span>About</a>
+      <a href="#experience"><span class="nl-num">02</span>Xp</a>
+      <a href="#projects"><span class="nl-num">03</span>Work</a>
+      <a href="#skills"><span class="nl-num">04</span>Skills</a>
+      <a href="#contact"><span class="nl-num">05</span>Contact</a>
     </nav>
     <div class="nav-right">
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
-        <i class="fa-solid fa-moon" id="themeIcon"></i>
-      </button>
-      <button class="burger" id="burger" aria-label="Menu">
-        <span></span><span></span>
+      <div class="nav-badge">
+        <span class="nb-pulse"></span>
+        <span class="mono">OPEN TO WORK</span>
+      </div>
+      <button id="themeBtn" class="theme-btn mono" aria-label="Toggle theme"><span id="themeLbl">DARK</span></button>
+      <button id="menuBtn" class="menu-btn" aria-label="Menu">
+        <span class="mb-bar"></span>
+        <span class="mb-bar"></span>
       </button>
     </div>
   </header>
 
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <nav>
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
+  <!-- FULLSCREEN MENU -->
+  <div id="fullMenu" class="full-menu">
+    <div class="fm-overlay"></div>
+    <nav class="fm-nav">
+      <a href="#about" class="fm-link"><em class="fm-n">01</em><span>About</span></a>
+      <a href="#experience" class="fm-link"><em class="fm-n">02</em><span>Experience</span></a>
+      <a href="#projects" class="fm-link"><em class="fm-n">03</em><span>Projects</span></a>
+      <a href="#skills" class="fm-link"><em class="fm-n">04</em><span>Skills</span></a>
+      <a href="#education" class="fm-link"><em class="fm-n">05</em><span>Education</span></a>
+      <a href="#contact" class="fm-link"><em class="fm-n">06</em><span>Contact</span></a>
     </nav>
+    <div class="fm-foot mono">RIFLAN MOHAMED · SRI LANKA · 2026</div>
   </div>
 
   <main>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="hero-noise"></div>
-      <div class="hero-grid-lines" aria-hidden="true">
-        <div class="gl gl-v gl-v1"></div>
-        <div class="gl gl-v gl-v2"></div>
-        <div class="gl gl-h gl-h1"></div>
-        <div class="gl gl-h gl-h2"></div>
-      </div>
-      <div class="hero-orb hero-orb-1"></div>
-      <div class="hero-orb hero-orb-2"></div>
+    <!-- ██████████ HERO ██████████ -->
+    <section id="home" class="hero">
+      <div class="hero-bg-text" aria-hidden="true">RIFLAN</div>
 
-      <div class="hero-inner">
-        <div class="hero-badge" id="heroBadge">
-          <span class="badge-dot"></span>
-          <span>Available for Internships 2026</span>
+      <div class="hero-top">
+        <div class="hero-eyebrow mono" id="hEyebrow">
+          <span class="he-dash"></span>
+          <span>SOFTWARE ENGINEER & AI BUILDER</span>
+          <span class="he-dash"></span>
         </div>
+      </div>
 
-        <h1 class="hero-name" id="heroName">
-          <span class="hn-line" id="hnLine1">Riflan</span>
-          <span class="hn-line" id="hnLine2">Mohamed</span>
+      <div class="hero-center">
+        <h1 class="hero-name">
+          <div class="hn-row" id="hnRow1">
+            <span class="hn-solid">RIF</span><span class="hn-italic">flan</span>
+          </div>
+          <div class="hn-row" id="hnRow2">
+            <span class="hn-outline">Mo</span><span class="hn-solid">hamed</span>
+          </div>
         </h1>
-
-        <div class="hero-role-wrap">
-          <p class="hero-role">I craft as a <strong id="heroRole">Software Engineer</strong></p>
-        </div>
-
-        <p class="hero-desc" id="heroDesc">
-          Aspiring Software Engineering Intern & AI enthusiast. Expert in Java, JavaScript, Python, React &amp; React Native — building full-stack and AI-powered products.
-        </p>
-
-        <div class="hero-btns" id="heroBtns">
-          <a href="#projects" class="hbtn hbtn-primary">
-            <span>View Projects</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-          <a href="#contact" class="hbtn hbtn-ghost">Let's Connect</a>
-        </div>
-
-        <div class="hero-stats" id="heroStats">
-          <div class="hstat">
-            <span class="hstat-num" data-count="3">0</span><span class="hstat-plus">+</span>
-            <p>Diploma &amp; Degree Paths</p>
-          </div>
-          <div class="hstat-divider"></div>
-          <div class="hstat">
-            <span class="hstat-num" data-count="6">0</span><span class="hstat-plus">+</span>
-            <p>Major Projects Built</p>
-          </div>
-          <div class="hstat-divider"></div>
-          <div class="hstat">
-            <span class="hstat-num" data-count="2026">0</span>
-            <p>Internship Year</p>
-          </div>
-        </div>
       </div>
 
-      <div class="hero-scroll-hint" id="heroScroll">
-        <span>scroll</span>
-        <div class="scroll-line"><div class="scroll-ball"></div></div>
-      </div>
-    </section>
-
-    <!-- VALUE -->
-    <section class="section" id="value">
-      <div class="section-label">
-        <span class="sl-num">01</span>
-        <span class="sl-text">Professional Value</span>
-      </div>
-      <h2 class="section-title reveal-title">Product-focused engineering<br>with AI-driven delivery</h2>
-      <div class="value-grid">
-        <article class="vcard reveal-card" data-delay="0">
-          <div class="vcard-icon"><i class="fa-solid fa-microchip"></i></div>
-          <h3>AI Product Development</h3>
-          <p>Design and build practical AI applications using Flask, OpenAI, Pinecone, and retrieval pipelines to deliver real user value.</p>
-          <div class="vcard-line"></div>
-        </article>
-        <article class="vcard reveal-card" data-delay="0.1">
-          <div class="vcard-icon"><i class="fa-solid fa-bolt"></i></div>
-          <h3>Real-Time Experiences</h3>
-          <p>High-performance real-time features with WebSocket architecture for chat, notifications, and responsive interactions.</p>
-          <div class="vcard-line"></div>
-        </article>
-        <article class="vcard reveal-card" data-delay="0.2">
-          <div class="vcard-icon"><i class="fa-solid fa-layer-group"></i></div>
-          <h3>Mobile + Full-Stack Execution</h3>
-          <p>From React Native frontends to backend integrations and API workflows — complete applications with production-ready foundations.</p>
-          <div class="vcard-line"></div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="section" id="about">
-      <div class="section-label">
-        <span class="sl-num">02</span>
-        <span class="sl-text">About</span>
-      </div>
-      <div class="about-layout">
-        <div class="about-left">
-          <h2 class="section-title reveal-title">Building practical products with AI + software engineering</h2>
-          <p class="about-desc reveal-fade">
-            Skilled in building scalable, data-driven applications and developing AI solutions using Flask, OpenAI, and Pinecone. Implementing real-time systems, REST APIs, and modern dev tools. Passionate about AI, Machine Learning, and innovative technologies with a strong problem-solving mindset.
+      <div class="hero-bottom">
+        <div class="hero-bl">
+          <p class="hero-desc mono" id="heroDesc">
+            Aspiring intern & AI enthusiast.<br>
+            Java · Python · React · React Native.
           </p>
+          <div class="hero-btns" id="heroBtns">
+            <a href="#projects" class="hbtn-main" id="hbtnMain">
+              <span class="hbtn-bg"></span>
+              <span class="hbtn-txt">VIEW WORK</span>
+              <span class="hbtn-icon"><i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+            <a href="#contact" class="hbtn-line">CONTACT</a>
+          </div>
         </div>
-        <div class="about-right">
-          <ul class="about-pills">
-            <li class="reveal-pill"><i class="fa-solid fa-code"></i> Full-stack web and mobile development</li>
-            <li class="reveal-pill"><i class="fa-solid fa-brain"></i> RAG-based AI chatbots and NLP workflows</li>
-            <li class="reveal-pill"><i class="fa-solid fa-bolt"></i> Real-time systems with WebSocket</li>
-            <li class="reveal-pill"><i class="fa-solid fa-database"></i> Data-driven application architecture</li>
+
+        <div class="hero-br">
+          <div class="hero-stats-grid" id="heroStats">
+            <div class="hsg-item">
+              <div class="hsg-n"><span class="hsg-count" data-t="6">0</span>+</div>
+              <div class="hsg-lbl mono">PROJECTS</div>
+            </div>
+            <div class="hsg-item">
+              <div class="hsg-n"><span class="hsg-count" data-t="3">0</span>+</div>
+              <div class="hsg-lbl mono">DIPLOMAS</div>
+            </div>
+            <div class="hsg-item">
+              <div class="hsg-n"><span class="hsg-count" data-t="5">0</span>+</div>
+              <div class="hsg-lbl mono">LANGUAGES</div>
+            </div>
+            <div class="hsg-item">
+              <div class="hsg-n"><span class="hsg-count" data-t="2026">0</span></div>
+              <div class="hsg-lbl mono">INTERN YEAR</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-role-badge" id="heroRoleBadge">
+        <span class="hrb-label mono">CURRENTLY BUILDING AS</span>
+        <span class="hrb-role" id="hrbRole">Software Engineer</span>
+      </div>
+
+      <div class="hero-scroll-cue" id="heroScrollCue">
+        <div class="hsc-wheel"><div class="hsc-ball"></div></div>
+        <span class="mono">SCROLL DOWN</span>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap" id="marqueeWrap">
+      <div class="mq-track" id="mqTrack">
+        <span class="mq-word">AI ENGINEER</span><span class="mq-dot">◆</span>
+        <span class="mq-word">REACT NATIVE</span><span class="mq-dot">◆</span>
+        <span class="mq-word">FULL-STACK DEV</span><span class="mq-dot">◆</span>
+        <span class="mq-word">MACHINE LEARNING</span><span class="mq-dot">◆</span>
+        <span class="mq-word">WEBSOCKET</span><span class="mq-dot">◆</span>
+        <span class="mq-word">OPEN TO INTERNSHIPS</span><span class="mq-dot">◆</span>
+        <span class="mq-word">AI ENGINEER</span><span class="mq-dot">◆</span>
+        <span class="mq-word">REACT NATIVE</span><span class="mq-dot">◆</span>
+        <span class="mq-word">FULL-STACK DEV</span><span class="mq-dot">◆</span>
+        <span class="mq-word">MACHINE LEARNING</span><span class="mq-dot">◆</span>
+        <span class="mq-word">WEBSOCKET</span><span class="mq-dot">◆</span>
+        <span class="mq-word">OPEN TO INTERNSHIPS</span><span class="mq-dot">◆</span>
+      </div>
+    </div>
+
+    <!-- ██████████ ABOUT ██████████ -->
+    <section id="about" class="sect">
+      <div class="sect-tag mono">[02 · ABOUT]</div>
+      <div class="about-layout">
+        <div class="al-left">
+          <h2 class="section-h">
+            <span class="sh-line sh-reveal">Product-focused</span>
+            <span class="sh-line sh-reveal sh-italic">engineering</span>
+            <span class="sh-line sh-reveal">with AI delivery.</span>
+          </h2>
+        </div>
+        <div class="al-right">
+          <p class="about-lead sh-reveal-fade">Skilled in building scalable, data-driven applications and AI solutions. From Flask + OpenAI backends to React Native frontends — delivering complete products with real-world impact.</p>
+          <p class="about-body sh-reveal-fade">Familiar with databases, REST APIs, Git/GitHub, and modern development workflows. Passionate about AI, Machine Learning, and innovative technologies with a strong problem-solving mindset.</p>
+          <div class="about-bullets">
+            <div class="ab-row sh-reveal-slide"><i class="fa-solid fa-code"></i><span>Full-Stack Web &amp; Mobile Dev</span></div>
+            <div class="ab-row sh-reveal-slide"><i class="fa-solid fa-brain"></i><span>RAG-Based AI Chatbots &amp; NLP</span></div>
+            <div class="ab-row sh-reveal-slide"><i class="fa-solid fa-bolt"></i><span>Real-Time WebSocket Systems</span></div>
+            <div class="ab-row sh-reveal-slide"><i class="fa-solid fa-database"></i><span>Data-Driven Application Architecture</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ██████████ EXPERIENCE ██████████ -->
+    <section id="experience" class="sect">
+      <div class="sect-tag mono">[03 · EXPERIENCE]</div>
+      <h2 class="section-h">
+        <span class="sh-line sh-reveal">Current</span>
+        <span class="sh-line sh-reveal sh-italic">Journey.</span>
+      </h2>
+      <div class="exp-card sh-reveal-card">
+        <div class="ec-left">
+          <div class="ec-idx mono">01</div>
+          <div class="ec-live-wrap">
+            <span class="ec-live-dot"></span>
+            <span class="ec-live-txt mono">ACTIVE</span>
+          </div>
+        </div>
+        <div class="ec-body">
+          <div class="ec-top">
+            <div>
+              <p class="ec-co mono">INNOV8SMART</p>
+              <h3 class="ec-role">React Native Developer<br>&amp; AI Trainee</h3>
+            </div>
+            <div class="ec-period mono">FEB 2026 — PRESENT</div>
+          </div>
+          <ul class="ec-list">
+            <li>Building cross-platform mobile apps with React Native</li>
+            <li>AI projects — API integration and intelligent feature development</li>
+            <li>Real-time functionality, UI improvements and backend integration</li>
           </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section class="section" id="experience">
-      <div class="section-label">
-        <span class="sl-num">03</span>
-        <span class="sl-text">Experience</span>
-      </div>
-      <h2 class="section-title reveal-title">Current professional journey</h2>
-      <div class="exp-block reveal-card" data-delay="0">
-        <div class="exp-top">
-          <div>
-            <p class="exp-company">Innov8Smart</p>
-            <h3 class="exp-role">Intern — React Native Mobile Developer &amp; AI Trainee</h3>
+          <div class="ec-tags">
+            <span>React Native</span><span>AI / ML</span><span>WebSocket</span><span>REST APIs</span><span>TypeScript</span>
           </div>
-          <span class="exp-date">Feb 2026 — Present</span>
-        </div>
-        <ul class="exp-list">
-          <li>Developing cross-platform mobile applications using React Native.</li>
-          <li>Working on AI-related projects, including integration with APIs and intelligent features.</li>
-          <li>Collaborating with the team to implement real-time functionality, UI improvements, and backend integration.</li>
-        </ul>
-        <div class="exp-tag-row">
-          <span>React Native</span><span>AI/ML</span><span>WebSocket</span><span>APIs</span>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section class="section" id="projects">
-      <div class="section-label">
-        <span class="sl-num">04</span>
-        <span class="sl-text">Projects</span>
+    <!-- ██████████ PROJECTS ██████████ -->
+    <section id="projects" class="sect">
+      <div class="sect-tag mono">[04 · SELECTED WORK]</div>
+      <div class="proj-header">
+        <h2 class="section-h">
+          <span class="sh-line sh-reveal">Selected</span>
+          <span class="sh-line sh-reveal sh-italic">Work.</span>
+        </h2>
+        <div class="proj-filters mono" id="projFilters">
+          <button class="pf active" data-f="all">ALL</button>
+          <button class="pf" data-f="ai">AI</button>
+          <button class="pf" data-f="mobile">MOBILE</button>
+          <button class="pf" data-f="web">WEB</button>
+        </div>
       </div>
-      <h2 class="section-title reveal-title">Selected work and product builds</h2>
 
-      <div class="filter-row" id="filterRow">
-        <button class="fb active" data-filter="all">All</button>
-        <button class="fb" data-filter="ai">AI</button>
-        <button class="fb" data-filter="mobile">Mobile</button>
-        <button class="fb" data-filter="fullstack">Full-Stack</button>
-      </div>
-
-      <div class="projects-wrap" id="projectsWrap">
-        <article class="pcard" data-cat="ai fullstack">
-          <div class="pcard-num">01</div>
-          <div class="pcard-body">
+      <div class="proj-list" id="projList">
+        <article class="proj-item" data-cats="ai web">
+          <div class="pi-num mono">01</div>
+          <div class="pi-name">
             <h3>Mediguide Medical Chatbot</h3>
-            <p>AI-powered medical assistant providing health guidance and support with real-time conversational AI.</p>
-            <p class="pcard-features">Symptom checking · Real-time responses · Personalized recommendations</p>
+            <p>AI-powered medical assistant with real-time conversational AI and symptom analysis.</p>
           </div>
-          <div class="pcard-footer">
-            <div class="pcard-tags">
-              <span>Python</span><span>Flask</span><span>OpenAI</span><span>Pinecone</span>
-            </div>
-            <div class="pcard-cats">
-              <span class="pcat ai">AI</span>
-            </div>
-          </div>
+          <div class="pi-tech mono">Python · Flask · OpenAI · Pinecone</div>
+          <div class="pi-cat cat-ai">AI</div>
+          <div class="pi-bar"></div>
         </article>
-
-        <article class="pcard" data-cat="ai fullstack">
-          <div class="pcard-num">02</div>
-          <div class="pcard-body">
+        <article class="proj-item" data-cats="ai web">
+          <div class="pi-num mono">02</div>
+          <div class="pi-name">
             <h3>Universal Research Assistant</h3>
-            <p>AI research assistant for students and professionals using multiple verified sources.</p>
-            <p class="pcard-features">Multi-source answers · Citations · Paper summarization · News aggregation</p>
+            <p>Multi-source AI research tool with citations, paper summarization and news aggregation.</p>
           </div>
-          <div class="pcard-footer">
-            <div class="pcard-tags">
-              <span>Python</span><span>OpenAI</span><span>Pinecone</span><span>Flask</span>
-            </div>
-            <div class="pcard-cats">
-              <span class="pcat ai">AI</span>
-            </div>
-          </div>
+          <div class="pi-tech mono">OpenAI · Pinecone · arXiv API · Flask</div>
+          <div class="pi-cat cat-ai">AI</div>
+          <div class="pi-bar"></div>
         </article>
-
-        <article class="pcard" data-cat="mobile fullstack">
-          <div class="pcard-num">03</div>
-          <div class="pcard-body">
+        <article class="proj-item" data-cats="mobile web">
+          <div class="pi-num mono">03</div>
+          <div class="pi-name">
             <h3>PingMe Real-Time Chat</h3>
-            <p>Cross-platform chat app with instant messaging and user authentication.</p>
-            <p class="pcard-features">Real-time messaging · WebSocket communication · User auth</p>
+            <p>Cross-platform chat app with WebSocket architecture and full user authentication.</p>
           </div>
-          <div class="pcard-footer">
-            <div class="pcard-tags">
-              <span>Java</span><span>React Native</span><span>MySQL</span><span>WebSocket</span>
-            </div>
-            <div class="pcard-cats">
-              <span class="pcat mobile">Mobile</span>
-            </div>
-          </div>
+          <div class="pi-tech mono">Java · React Native · WebSocket · MySQL</div>
+          <div class="pi-cat cat-mob">MOBILE</div>
+          <div class="pi-bar"></div>
         </article>
-
-        <article class="pcard" data-cat="mobile fullstack">
-          <div class="pcard-num">04</div>
-          <div class="pcard-body">
+        <article class="proj-item" data-cats="mobile web">
+          <div class="pi-num mono">04</div>
+          <div class="pi-name">
             <h3>Qiera Real Estate App</h3>
-            <p>Web/mobile app for property listings, management and discovery.</p>
-            <p class="pcard-features">Property search · Map integration · Listing management · Responsive UI</p>
+            <p>Property listings and management with map integration and responsive UI design.</p>
           </div>
-          <div class="pcard-footer">
-            <div class="pcard-tags">
-              <span>React Native</span><span>Appwrite</span><span>Tailwind</span>
-            </div>
-            <div class="pcard-cats">
-              <span class="pcat mobile">Mobile</span>
-            </div>
-          </div>
+          <div class="pi-tech mono">React Native · Appwrite · Tailwind · MySQL</div>
+          <div class="pi-cat cat-mob">MOBILE</div>
+          <div class="pi-bar"></div>
         </article>
-
-        <article class="pcard" data-cat="fullstack">
-          <div class="pcard-num">05</div>
-          <div class="pcard-body">
+        <article class="proj-item" data-cats="web">
+          <div class="pi-num mono">05</div>
+          <div class="pi-name">
             <h3>ZGen Cinema Reservation</h3>
-            <p>Desktop/Web reservation system with movie scheduling and cashier handling.</p>
-            <p class="pcard-features">Movie scheduling · QR ticket generation · Snack bar management</p>
+            <p>Full-stack reservation system with movie scheduling and QR ticket generation.</p>
           </div>
-          <div class="pcard-footer">
-            <div class="pcard-tags">
-              <span>Java</span><span>MySQL</span><span>Jasper Reports</span>
-            </div>
-            <div class="pcard-cats">
-              <span class="pcat fullstack">Full-Stack</span>
-            </div>
-          </div>
+          <div class="pi-tech mono">Java · MySQL · Jasper Reports</div>
+          <div class="pi-cat cat-web">WEB</div>
+          <div class="pi-bar"></div>
         </article>
-
-        <article class="pcard" data-cat="mobile fullstack">
-          <div class="pcard-num">06</div>
-          <div class="pcard-body">
-            <h3>Other Projects</h3>
-            <p>Momento Todo App, Personal Portfolio, Booksy Website — focused on clean UI/UX and reliable delivery.</p>
-            <p class="pcard-features">React Native · JavaScript · TypeScript · Web technologies</p>
+        <article class="proj-item" data-cats="mobile web">
+          <div class="pi-num mono">06</div>
+          <div class="pi-name">
+            <h3>Momento, Booksy &amp; Portfolio</h3>
+            <p>Todo app, book discovery and personal portfolio — clean UI/UX and reliable delivery.</p>
           </div>
-          <div class="pcard-footer">
-            <div class="pcard-tags">
-              <span>React Native</span><span>TypeScript</span><span>JavaScript</span>
-            </div>
-            <div class="pcard-cats">
-              <span class="pcat mobile">Mobile</span>
-            </div>
-          </div>
+          <div class="pi-tech mono">React Native · TypeScript · JavaScript</div>
+          <div class="pi-cat cat-mob">MOBILE</div>
+          <div class="pi-bar"></div>
         </article>
       </div>
     </section>
 
-    <!-- APPROACH -->
-    <section class="section" id="approach">
-      <div class="section-label">
-        <span class="sl-num">05</span>
-        <span class="sl-text">Work Approach</span>
-      </div>
-      <h2 class="section-title reveal-title">How I build modern applications</h2>
-      <div class="approach-track" id="approachTrack">
-        <div class="aitem reveal-card" data-delay="0">
-          <span class="aitem-step">01</span>
-          <h3>Discover</h3>
-          <p>Define user needs, use cases, and expected business outcomes before implementation.</p>
+    <!-- ██████████ SKILLS ██████████ -->
+    <section id="skills" class="sect">
+      <div class="sect-tag mono">[06 · SKILLS]</div>
+      <h2 class="section-h">
+        <span class="sh-line sh-reveal">Technical</span>
+        <span class="sh-line sh-reveal sh-italic">Arsenal.</span>
+      </h2>
+      <div class="skills-wall" id="skillsWall">
+        <div class="sw-group sh-reveal-card">
+          <div class="swg-label mono">LANGUAGES</div>
+          <div class="swg-tags">
+            <span style="--s:1.4rem">Java</span>
+            <span style="--s:1.2rem">JavaScript</span>
+            <span style="--s:1.1rem">TypeScript</span>
+            <span style="--s:1rem">Python</span>
+            <span style="--s:.9rem">PHP</span>
+            <span style="--s:.85rem">HTML/CSS</span>
+          </div>
         </div>
-        <div class="aitem-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-        <div class="aitem reveal-card" data-delay="0.1">
-          <span class="aitem-step">02</span>
-          <h3>Architect</h3>
-          <p>Choose scalable technologies for frontend, backend, data, and AI integration layers.</p>
+        <div class="sw-group sh-reveal-card">
+          <div class="swg-label mono">FRAMEWORKS</div>
+          <div class="swg-tags">
+            <span style="--s:1.4rem">React Native</span>
+            <span style="--s:1.2rem">React</span>
+            <span style="--s:1.1rem">Flask</span>
+            <span style="--s:1rem">Tailwind CSS</span>
+            <span style="--s:.9rem">REST APIs</span>
+          </div>
         </div>
-        <div class="aitem-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-        <div class="aitem reveal-card" data-delay="0.2">
-          <span class="aitem-step">03</span>
-          <h3>Build</h3>
-          <p>Develop clean, testable modules with modern tooling, responsive UI, and robust API design.</p>
+        <div class="sw-group sh-reveal-card">
+          <div class="swg-label mono">AI & DATA</div>
+          <div class="swg-tags">
+            <span style="--s:1.4rem">OpenAI</span>
+            <span style="--s:1.3rem">Pinecone</span>
+            <span style="--s:1.1rem">RAG Chatbots</span>
+            <span style="--s:1rem">NLP</span>
+            <span style="--s:.95rem">Pandas</span>
+            <span style="--s:.85rem">NumPy</span>
+            <span style="--s:.8rem">Matplotlib</span>
+          </div>
         </div>
-        <div class="aitem-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-        <div class="aitem reveal-card" data-delay="0.3">
-          <span class="aitem-step">04</span>
-          <h3>Optimize</h3>
-          <p>Improve performance, usability, and reliability through iterations and feedback-driven refinement.</p>
+        <div class="sw-group sh-reveal-card">
+          <div class="swg-label mono">TOOLS & DB</div>
+          <div class="swg-tags">
+            <span style="--s:1.3rem">MySQL</span>
+            <span style="--s:1.1rem">Appwrite</span>
+            <span style="--s:1rem">Git / GitHub</span>
+            <span style="--s:.9rem">WebSocket</span>
+            <span style="--s:.85rem">VS Code</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SKILLS -->
-    <section class="section" id="skills">
-      <div class="section-label">
-        <span class="sl-num">06</span>
-        <span class="sl-text">Skills</span>
-      </div>
-      <h2 class="section-title reveal-title">Technical stack and capabilities</h2>
-      <div class="skills-grid">
-        <article class="skcard reveal-card" data-delay="0">
-          <div class="skcard-icon"><i class="fa-solid fa-terminal"></i></div>
-          <h3>Languages</h3>
-          <div class="sk-pills">
-            <span>Java</span><span>JavaScript</span><span>TypeScript</span><span>PHP</span><span>Python</span><span>HTML</span><span>CSS</span>
-          </div>
-        </article>
-        <article class="skcard reveal-card" data-delay="0.08">
-          <div class="skcard-icon"><i class="fa-solid fa-cubes"></i></div>
-          <h3>Frameworks & Libraries</h3>
-          <div class="sk-pills">
-            <span>React</span><span>React Native</span><span>Flask</span><span>Tailwind CSS</span><span>REST APIs</span>
-          </div>
-        </article>
-        <article class="skcard reveal-card" data-delay="0.16">
-          <div class="skcard-icon"><i class="fa-solid fa-database"></i></div>
-          <h3>Databases & Tools</h3>
-          <div class="sk-pills">
-            <span>MySQL</span><span>Appwrite</span><span>Git</span><span>GitHub</span><span>VS Code</span><span>NetBeans</span>
-          </div>
-        </article>
-        <article class="skcard reveal-card" data-delay="0.24">
-          <div class="skcard-icon"><i class="fa-solid fa-brain"></i></div>
-          <h3>AI & Data Science</h3>
-          <div class="sk-pills">
-            <span>OpenAI</span><span>Pinecone</span><span>NLP</span><span>RAG Chatbots</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span>
-          </div>
-        </article>
-        <article class="skcard reveal-card" data-delay="0.32">
-          <div class="skcard-icon"><i class="fa-solid fa-wifi"></i></div>
-          <h3>Real-Time & Networking</h3>
-          <div class="sk-pills">
-            <span>WebSocket</span><span>Real-Time Apps</span>
-          </div>
-        </article>
-        <article class="skcard reveal-card" data-delay="0.4">
-          <div class="skcard-icon"><i class="fa-solid fa-mobile-screen"></i></div>
-          <h3>Other Skills</h3>
-          <div class="sk-pills">
-            <span>IoT Basics</span><span>Mobile Dev</span><span>Full-Stack</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section class="section" id="education">
-      <div class="section-label">
-        <span class="sl-num">07</span>
-        <span class="sl-text">Education</span>
-      </div>
-      <h2 class="section-title reveal-title">Academic and language background</h2>
-      <div class="edu-list">
-        <article class="edu-row reveal-card" data-delay="0">
-          <div class="edu-year">2022–2026</div>
-          <div class="edu-info">
+    <!-- ██████████ EDUCATION ██████████ -->
+    <section id="education" class="sect">
+      <div class="sect-tag mono">[07 · EDUCATION]</div>
+      <h2 class="section-h">
+        <span class="sh-line sh-reveal">Academic</span>
+        <span class="sh-line sh-reveal sh-italic">Background.</span>
+      </h2>
+      <div class="edu-rows">
+        <div class="edu-row sh-reveal-card">
+          <div class="er-yr mono">2022–2026</div>
+          <div class="er-info">
             <h3>BSc (Hons) Software Engineering</h3>
             <p>Birmingham City University</p>
           </div>
-          <div class="edu-badge">Degree</div>
-        </article>
-        <article class="edu-row reveal-card" data-delay="0.1">
-          <div class="edu-year">2025–2026</div>
-          <div class="edu-info">
+          <div class="er-badge badge-deg">DEGREE</div>
+        </div>
+        <div class="edu-row sh-reveal-card">
+          <div class="er-yr mono">2025–2026</div>
+          <div class="er-info">
             <h3>Diploma in Machine Learning &amp; AI</h3>
             <p>ICBS International</p>
           </div>
-          <div class="edu-badge">Diploma</div>
-        </article>
-        <article class="edu-row reveal-card" data-delay="0.2">
-          <div class="edu-year">2024–2025</div>
-          <div class="edu-info">
+          <div class="er-badge badge-dip">DIPLOMA</div>
+        </div>
+        <div class="edu-row sh-reveal-card">
+          <div class="er-yr mono">2024–2025</div>
+          <div class="er-info">
             <h3>Diploma in English</h3>
             <p>ESOFT</p>
           </div>
-          <div class="edu-badge">Diploma</div>
-        </article>
-        <article class="edu-row reveal-card" data-delay="0.3">
-          <div class="edu-year">Languages</div>
-          <div class="edu-info">
+          <div class="er-badge badge-dip">DIPLOMA</div>
+        </div>
+        <div class="edu-row sh-reveal-card">
+          <div class="er-yr mono">LANG</div>
+          <div class="er-info">
             <h3>Multilingual</h3>
-            <p>English (Conversational) · Tamil (Native) · Sinhala (Conversational)</p>
+            <p>English (Conv.) · Tamil (Native) · Sinhala (Conv.)</p>
           </div>
-          <div class="edu-badge">Language</div>
-        </article>
+          <div class="er-badge badge-lng">LANGUAGE</div>
+        </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section class="section contact-section" id="contact">
-      <div class="section-label">
-        <span class="sl-num">08</span>
-        <span class="sl-text">Contact</span>
-      </div>
+    <!-- ██████████ CONTACT ██████████ -->
+    <section id="contact" class="sect sect-contact">
+      <div class="sect-tag mono">[08 · CONTACT]</div>
       <div class="contact-inner">
-        <h2 class="contact-heading reveal-title">Open to software<br>engineering &amp; AI<br><em>opportunities.</em></h2>
+        <h2 class="contact-h">
+          <span class="sh-line sh-reveal">Let's</span>
+          <span class="sh-line sh-reveal">Build</span>
+          <span class="sh-line sh-reveal sh-italic">Together.</span>
+        </h2>
         <div class="contact-right">
-          <p class="contact-copy reveal-fade">Available for internships, collaborations, and project-based work in software engineering, AI, and full-stack development.</p>
-          <div class="contact-links reveal-fade">
-            <a class="clink" href="https://www.linkedin.com/in/riflan" target="_blank" rel="noopener">
-              <i class="fa-brands fa-linkedin"></i>
-              <span>LinkedIn</span>
-              <i class="fa-solid fa-arrow-up-right-from-square clink-arrow"></i>
+          <p class="contact-sub sh-reveal-fade">Open to internships, collaborations, and project-based work in software engineering, AI, and full-stack development.</p>
+          <div class="contact-links">
+            <a class="cl-item sh-reveal-link" href="https://www.linkedin.com/in/riflan" target="_blank" rel="noopener">
+              <div class="cli-icon"><i class="fa-brands fa-linkedin"></i></div>
+              <div class="cli-body">
+                <span class="cli-lbl mono">LINKEDIN</span>
+                <span class="cli-val">linkedin.com/in/riflan</span>
+              </div>
+              <div class="cli-arr"><i class="fa-solid fa-arrow-up-right"></i></div>
             </a>
-            <a class="clink" href="https://github.com" target="_blank" rel="noopener">
-              <i class="fa-brands fa-github"></i>
-              <span>GitHub</span>
-              <i class="fa-solid fa-arrow-up-right-from-square clink-arrow"></i>
+            <a class="cl-item sh-reveal-link" href="https://github.com" target="_blank" rel="noopener">
+              <div class="cli-icon"><i class="fa-brands fa-github"></i></div>
+              <div class="cli-body">
+                <span class="cli-lbl mono">GITHUB</span>
+                <span class="cli-val">github.com/riflan</span>
+              </div>
+              <div class="cli-arr"><i class="fa-solid fa-arrow-up-right"></i></div>
             </a>
-            <a class="clink" href="mailto:rizlanahmd4545@gmail.com">
-              <i class="fa-solid fa-envelope"></i>
-              <span>rizlanahmd4545@gmail.com</span>
-              <i class="fa-solid fa-arrow-up-right-from-square clink-arrow"></i>
+            <a class="cl-item sh-reveal-link" href="mailto:rizlanahmd4545@gmail.com">
+              <div class="cli-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="cli-body">
+                <span class="cli-lbl mono">EMAIL</span>
+                <span class="cli-val">rizlanahmd4545@gmail.com</span>
+              </div>
+              <div class="cli-arr"><i class="fa-solid fa-arrow-up-right"></i></div>
             </a>
           </div>
         </div>
@@ -492,11 +458,11 @@
   </main>
 
   <footer class="site-footer">
-    <p>© 2026 Riflan Mohamed</p>
-    <p class="footer-built">Built with HTML · CSS · JavaScript · GSAP</p>
+    <span class="sf-brand">RIFLAN MOHAMED</span>
+    <span class="mono sf-mid">BUILT WITH HTML · CSS · JS · GSAP</span>
+    <span class="mono sf-loc">SRI LANKA · © 2026</span>
   </footer>
 
-  <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
