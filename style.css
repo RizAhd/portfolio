@@ -698,6 +698,7 @@ a, button {
   align-items: flex-end;
   justify-content: space-between;
   gap: 2.5rem;
+  min-width: 0;
 }
 
 .hero-name {
@@ -707,6 +708,7 @@ a, button {
   line-height: 0.9;
   letter-spacing: 0.04em;
   overflow: hidden;
+  min-width: 0;
 }
 
 .hn-row {
@@ -1759,6 +1761,10 @@ a, button {
   #nav {
     grid-template-columns: minmax(0, 1fr) auto auto;
   }
+  .sect {
+    padding-left: clamp(1.25rem, 4vw, 2.25rem);
+    padding-right: clamp(1.25rem, 4vw, 2.25rem);
+  }
   .nav-sub {
     display: none;
   }
@@ -1792,6 +1798,9 @@ a, button {
   }
   .hero-bottom {
     grid-template-columns: 1fr;
+  }
+  .hero-role-badge {
+    right: 2rem;
   }
   .hero-stats {
     display: grid;
@@ -1829,6 +1838,9 @@ a, button {
 }
 
 @media(max-width:900px) {
+  #nav {
+    gap: 0.9rem;
+  }
   .nav-center {
     display: none;
   }
@@ -1849,6 +1861,9 @@ a, button {
   .proj-row {
     grid-template-columns: 55px minmax(0, 1fr);
     gap: 1rem 1.2rem;
+  }
+  .proj-head {
+    align-items: flex-start;
   }
   .pr-stack, .pr-tag {
     grid-column: 2;
@@ -1898,6 +1913,9 @@ a, button {
   #nav {
     padding: 0 1.2rem;
   }
+  .nav-right {
+    gap: 0.65rem;
+  }
   .hero {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
@@ -1926,6 +1944,9 @@ a, button {
     gap: 1.8rem;
     padding: 2.5rem 0 5rem;
   }
+  .hero-desc {
+    line-height: 1.85;
+  }
   .hero-stats {
     grid-template-columns: 1fr 1fr;
   }
@@ -1934,9 +1955,13 @@ a, button {
   }
   .hero-scroll {
     bottom: 1.5rem;
+    gap: 0.5rem;
   }
   .section-h, .contact-h {
     margin-bottom: 3rem;
+  }
+  .section-h, .contact-h, .ec-title {
+    letter-spacing: 0.02em;
   }
   .proj-filters {
     flex-wrap: wrap;
@@ -1956,6 +1981,12 @@ a, button {
 }
 
 @media(max-width:640px) {
+  .pre-inner {
+    width: 100%;
+  }
+  .pre-logo-wrap {
+    letter-spacing: 0.08em;
+  }
   .pre-bar-wrap, .pre-foot {
     width: min(320px, 100%);
   }
@@ -1969,11 +2000,17 @@ a, button {
     min-height: auto;
     padding-bottom: 0;
   }
+  .hero-eyebrow {
+    padding-top: 2.25rem;
+  }
   .hero-name-wrap {
     gap: 0.9rem;
   }
   .hero-desc {
     max-width: none;
+  }
+  .hero-scroll {
+    display: none;
   }
   .hero-stats {
     grid-template-columns: 1fr;
@@ -1987,6 +2024,13 @@ a, button {
   .pr-stack {
     font-size: 0.62rem;
     margin-top: 0;
+  }
+  .proj-filters {
+    width: 100%;
+  }
+  .pf {
+    flex: 1 1 calc(50% - 0.2rem);
+    text-align: center;
   }
   .pr-info p {
     font-size: 0.84rem;
@@ -2011,7 +2055,7 @@ a, button {
 
 @media(max-width:480px) {
   .sect {
-    padding: 5rem 1.5rem;
+    padding: 4.5rem 1rem;
   }
   #nav {
     padding: 0 1rem;
@@ -2019,15 +2063,23 @@ a, button {
   .nav-brand {
     font-size: 1.3rem;
   }
+  .nav-right {
+    gap: 0.5rem;
+  }
   #themeBtn, #menuBtn {
     height: 38px;
   }
   #themeBtn {
     padding-inline: 0.65rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
   }
   .hero {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  .hero-grid-lines {
+    grid-template-columns: repeat(2, 1fr);
   }
   .hero-eyebrow {
     padding-top: 2rem;
@@ -2036,6 +2088,9 @@ a, button {
   }
   .hero-name {
     font-size: clamp(3rem, 19vw, 5.5rem);
+  }
+  .hero-year {
+    font-size: 0.64rem;
   }
   .hero-btns {
     flex-direction: column;
@@ -2052,8 +2107,22 @@ a, button {
   .pr-num, .pr-stack, .pr-tag {
     grid-column: auto;
   }
+  .pr-tag {
+    width: fit-content;
+  }
   .pr-bar {
     left: 0;
+  }
+  .clink {
+    grid-template-columns: 40px minmax(0, 1fr);
+    padding: 1rem;
+  }
+  .cl-arr {
+    display: none;
+  }
+  .fm-nav {
+    left: 1rem;
+    right: 1rem;
   }
   .exp-card, .sg-block {
     padding: 1.5rem;
