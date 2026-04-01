@@ -603,9 +603,7 @@ a, button {
   color: var(--accent-soft);
 }
 
-#fullMenu.open .fm-t, #fullMenu.open .fm-n {
-  transform: translateY(0);
-}
+/* #fullMenu.open .fm-t, #fullMenu.open .fm-n — GSAP handles via inline styles */
 
 .fm-foot {
   position: absolute;
@@ -1764,9 +1762,7 @@ a, button {
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:1024px) {
-  #nav {
-    grid-template-columns: minmax(0, 1fr) auto auto;
-  }
+  /* Nav grid stays auto 1fr auto — nav-center remains centered between brand and buttons */
   .sect {
     padding-left: clamp(1.25rem, 4vw, 2.25rem);
     padding-right: clamp(1.25rem, 4vw, 2.25rem);
@@ -1837,7 +1833,11 @@ a, button {
 
 @media(max-width:900px) {
   #nav {
-    gap: 0.9rem;
+    /* Switch to flex so brand sits left and buttons sit right cleanly */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
   }
   .nav-center {
     display: none;
@@ -1936,11 +1936,11 @@ a, button {
     font-size: clamp(3.8rem, 20vw, 8rem);
   }
   .hn-row2 {
-    padding-left: clamp(1.2rem, 6vw, 3.5rem);
+    padding-left: clamp(0.8rem, 4vw, 2.5rem);
   }
   .hero-bottom {
     gap: 1.8rem;
-    padding: 2.5rem 0 5rem;
+    padding: 2rem 0 4rem;
   }
   .hero-desc {
     line-height: 1.85;
@@ -2086,7 +2086,10 @@ a, button {
     letter-spacing: 0.14em;
   }
   .hero-name {
-    font-size: clamp(3rem, 19vw, 5.5rem);
+    font-size: clamp(2.8rem, 17vw, 5rem);
+  }
+  .hn-row2 {
+    padding-left: 0;
   }
   .hero-year {
     font-size: 0.64rem;

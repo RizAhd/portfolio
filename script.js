@@ -247,15 +247,20 @@ document.body.classList.add('loading');
 
 // ===== ENHANCED HERO ANIMATIONS =====
 function runHero() {
+  // Explicitly claim the initial transform state in GSAP's model.
+  // This avoids any CSS-to-GSAP parsing ambiguity on mobile WebKit
+  // and ensures yPercent animations start from the correct value.
+  gsap.set('#hnRow1 .hn-a, #hnRow1 .hn-b, #hnRow2 .hn-c, #hnRow2 .hn-a', { yPercent: 115 });
+
   const tl = gsap.timeline({
     defaults: { ease: 'expo-out' }
   });
 
   tl.to('#hEyebrow', { opacity: 1, y: 0, duration: 0.8 })
-    .to('#hnRow1 .hn-a', { y: '0%', duration: 1.3 }, '-=0.4')
-    .to('#hnRow1 .hn-b', { y: '0%', duration: 1.3, delay: 0.1 }, '<')
-    .to('#hnRow2 .hn-c', { y: '0%', duration: 1.3 }, '-=0.9')
-    .to('#hnRow2 .hn-a', { y: '0%', duration: 1.3, delay: 0.08 }, '<')
+    .to('#hnRow1 .hn-a', { yPercent: 0, duration: 1.3 }, '-=0.4')
+    .to('#hnRow1 .hn-b', { yPercent: 0, duration: 1.3, delay: 0.1 }, '<')
+    .to('#hnRow2 .hn-c', { yPercent: 0, duration: 1.3 }, '-=0.9')
+    .to('#hnRow2 .hn-a', { yPercent: 0, duration: 1.3, delay: 0.08 }, '<')
     .to('#heroYear', { opacity: 1, duration: 0.7 }, '-=0.6')
     .to('#heroDesc', { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
     .to('#heroBtns', { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
@@ -367,7 +372,7 @@ function runHero() {
       once: true,
       onEnter: () => {
         gsap.to(line, {
-          y: '0%',
+          yPercent: 0,
           opacity: 1,
           duration: 1.0,
           ease: 'expo-out'
@@ -593,9 +598,9 @@ document.querySelectorAll('.sect-tag').forEach(tag => {
     menu.classList.add('open');
     menu.setAttribute('aria-hidden', 'false');
     document.body.classList.add('menu-open');
-    gsap.set(menuItems, { y: '115%' });
+    gsap.set(menuItems, { yPercent: 115 });
     gsap.to(menuItems, {
-      y: '0%',
+      yPercent: 0,
       stagger: 0.08,
       duration: 0.8,
       ease: 'expo-out',
@@ -611,7 +616,7 @@ document.querySelectorAll('.sect-tag').forEach(tag => {
     menu.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('menu-open');
     gsap.to(menuItems, {
-      y: '115%',
+      yPercent: 115,
       stagger: { each: 0.05, from: 'end' },
       duration: 0.4,
       ease: 'expo-in',
@@ -808,7 +813,7 @@ document.querySelectorAll('.sect-tag').forEach(tag => {
     once: true,
     onEnter: () => {
       gsap.from('.contact-h .sl', {
-        y: '115%',
+        yPercent: 115,
         stagger: 0.1,
         duration: 0.9,
         ease: 'expo-out'
