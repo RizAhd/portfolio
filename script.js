@@ -2,7 +2,7 @@
 'use strict';
 
 // Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger, TextPlugin, CustomEase);
+gsap.registerPlugin(ScrollTrigger, CustomEase);
 
 // Custom easing curves
 CustomEase.create('expo-out', 'M0,0 C0.14,1 0.28,1 1,1');
@@ -16,20 +16,27 @@ CustomEase.create('elastic-custom', 'M0,0 C0.5,0 0.5,1 1,1');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let W, H, particles = [];
-  const COUNT = window.innerWidth < 768 ? 40 : 90;
-  let mouse = { x: 0, y: 0 };
+  // Kill particles entirely on mobile — GPU not needed there
+  const isMobile = window.innerWidth < 768;
+  if (isMobile) { canvas.style.display = 'none'; return; }
+  const COUNT = window.innerWidth < 1200 ? 32 : 50;
+  let mouse = { x: -9999, y: -9999 };
 
+  let resizeTimer;
   const resize = () => {
     W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
   };
   resize();
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resize, 200);
+  }, { passive: true });
 
   document.addEventListener('mousemove', e => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
-  });
+  }, { passive: true });
 
   class Particle {
     constructor() {
@@ -68,41 +75,32 @@ CustomEase.create('elastic-custom', 'M0,0 C0.5,0 0.5,1 1,1');
       }
     }
     draw() {
-      ctx.save();
       const fade = Math.sin((this.age / this.life) * Math.PI);
       ctx.globalAlpha = this.alpha * fade;
-      
-      // Gradient particle
-      const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r * 3);
-      gradient.addColorStop(0, `hsla(${this.hue}, 80%, 70%, 1)`);
-      gradient.addColorStop(1, `hsla(${this.hue}, 80%, 70%, 0)`);
-      ctx.fillStyle = gradient;
-      
+      ctx.fillStyle = `hsl(${this.hue},70%,65%)`;
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r * 3, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, this.r * 2.2, 0, Math.PI * 2);
       ctx.fill();
-      ctx.restore();
     }
   }
 
   for (let i = 0; i < COUNT; i++) particles.push(new Particle());
 
   const drawLines = () => {
+    if (W < 1024) return;
+    ctx.strokeStyle = '#818cf8';
+    ctx.lineWidth = 0.5;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          ctx.save();
-          ctx.globalAlpha = (1 - dist / 120) * 0.08;
-          ctx.strokeStyle = `hsla(240, 70%, 65%, 1)`;
-          ctx.lineWidth = 0.6;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < 8100) {
+          ctx.globalAlpha = (1 - Math.sqrt(distSq) / 90) * 0.07;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.stroke();
-          ctx.restore();
         }
       }
     }
@@ -110,10 +108,9 @@ CustomEase.create('elastic-custom', 'M0,0 C0.5,0 0.5,1 1,1');
 
   const loop = () => {
     ctx.clearRect(0, 0, W, H);
-    particles.forEach(p => {
-      p.update();
-      p.draw();
-    });
+    particles.forEach(p => p.update());
+    ctx.globalAlpha = 1;
+    particles.forEach(p => p.draw());
     drawLines();
     requestAnimationFrame(loop);
   };
@@ -196,13 +193,13 @@ document.body.classList.add('loading');
     }
   }, 45);
 
-  // Enhanced timeline
+  // Streamlined timeline — fast load feel
   const tl = gsap.timeline({
-    delay: 0.4,
+    delay: 0.15,
     onComplete: () => {
       gsap.timeline()
-        .to(panelL, { scaleX: 1, duration: 0.6, ease: 'expo-in' })
-        .to(panelR, { scaleX: 1, duration: 0.6, ease: 'expo-in' }, '<')
+        .to(panelL, { scaleX: 1, duration: 0.4, ease: 'expo-in' })
+        .to(panelR, { scaleX: 1, duration: 0.4, ease: 'expo-in' }, '<')
         .call(() => {
           preloader.remove();
           document.body.classList.remove('loading');
@@ -214,15 +211,15 @@ document.body.classList.add('loading');
   tl.to(letters, {
     y: 0,
     opacity: 1,
-    stagger: { each: 0.07, from: 'start' },
-    duration: 1,
+    stagger: { each: 0.05, from: 'start' },
+    duration: 0.65,
     ease: 'expo-out'
   })
     .to(
       counter,
       {
         v: 100,
-        duration: 2,
+        duration: 1.1,
         ease: 'power2.inOut',
         onUpdate() {
           const v = Math.floor(counter.v);
@@ -230,18 +227,18 @@ document.body.classList.add('loading');
           preBar.style.width = v + '%';
         }
       },
-      '-=0.5'
+      '-=0.3'
     )
     .to(
       letters,
       {
-        y: -40,
+        y: -30,
         opacity: 0,
-        stagger: { each: 0.06, from: 'end' },
-        duration: 0.5,
+        stagger: { each: 0.04, from: 'end' },
+        duration: 0.32,
         ease: 'expo-in'
       },
-      '-=0.4'
+      '-=0.28'
     );
 })();
 
@@ -270,9 +267,9 @@ function runHero() {
     const obj = { v: 0 };
     gsap.to(obj, {
       v: target,
-      duration: 2.6,
+      duration: 2.0,
       ease: 'power3.out',
-      delay: 1.8,
+      delay: 1.2,
       onUpdate() {
         el.textContent = Math.round(obj.v);
       }
@@ -354,7 +351,7 @@ function runHero() {
   window.addEventListener('scroll', () => {
     scrollV = window.scrollY - lastY;
     lastY = window.scrollY;
-  });
+  }, { passive: true });
 
   gsap.ticker.add(() => {
     const speed = Math.max(25 - Math.abs(scrollV) * 0.6, 8);
@@ -578,7 +575,7 @@ document.querySelectorAll('.sect-tag').forEach(tag => {
         if (link) link.classList.add('active');
       }
     });
-  });
+  }, { passive: true });
 })();
 
 // ===== MENU =====

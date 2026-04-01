@@ -119,7 +119,8 @@ a, button {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.28;
+  opacity: 0.22;
+  will-change: contents;
 }
 
 .noise-overlay {
@@ -143,6 +144,7 @@ a, button {
   z-index: 9999;
   transform: translate(-50%, -50%);
   mix-blend-mode: difference;
+  will-change: transform;
 }
 
 #cursorRing {
@@ -157,6 +159,7 @@ a, button {
   mix-blend-mode: difference;
   transition: width 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55), height 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
   opacity: 0.65;
+  will-change: transform, width, height;
 }
 
 @media(pointer:coarse) {
@@ -663,6 +666,7 @@ a, button {
   user-select: none;
   z-index: 0;
   opacity: 0;
+  will-change: transform, opacity;
 }
 
 .hero-eyebrow {
@@ -726,6 +730,7 @@ a, button {
   color: var(--ink);
   transform: translateY(115%);
   display: block;
+  will-change: transform;
 }
 
 .hn-b {
@@ -736,6 +741,7 @@ a, button {
   display: block;
   font-size: 0.84em;
   font-weight: 400;
+  will-change: transform;
 }
 
 .hn-c {
@@ -743,6 +749,7 @@ a, button {
   -webkit-text-stroke: 2px var(--ink3);
   transform: translateY(115%);
   display: block;
+  will-change: transform;
 }
 
 .hero-year {
@@ -1075,6 +1082,7 @@ a, button {
   overflow: hidden;
   transform: translateY(115%);
   opacity: 0;
+  will-change: transform, opacity;
 }
 
 .sl-i {
@@ -1724,9 +1732,11 @@ a, button {
 .site-footer {
   border-top: 1px solid var(--rule2);
   padding: 1.8rem clamp(1.5rem, 5vw, 4.5rem);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -1825,15 +1835,7 @@ a, button {
     margin-top: -0.6rem;
   }
   .site-footer {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem 1.5rem;
-  }
-  .sf-mid {
-    text-align: left;
-  }
-  .sf-loc {
-    grid-column: 1 / -1;
-    text-align: left;
+    gap: 0.8rem;
   }
 }
 
@@ -1971,11 +1973,11 @@ a, button {
     padding: 1.1rem 1.2rem;
   }
   .site-footer {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
   }
-  .sf-loc, .sf-mid, .sf-name {
+  .sf-loc, .sf-name {
     text-align: center;
   }
 }
