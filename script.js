@@ -4,6 +4,9 @@
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 
+// Detect touch/pointer-coarse devices to skip mouse-only effects
+const isTouch = !window.matchMedia('(pointer: fine)').matches;
+
 // Custom easing curves
 CustomEase.create('expo-out', 'M0,0 C0.14,1 0.28,1 1,1');
 CustomEase.create('expo-in', 'M0,0 C0.72,0 0.86,0 1,1');
@@ -346,24 +349,12 @@ function runHero() {
   const inner = document.getElementById('mqInner');
   if (!inner) return;
 
-  let scrollV = 0,
-    lastY = 0;
-  window.addEventListener('scroll', () => {
-    scrollV = window.scrollY - lastY;
-    lastY = window.scrollY;
-  }, { passive: true });
-
-  gsap.ticker.add(() => {
-    const speed = Math.max(25 - Math.abs(scrollV) * 0.6, 8);
-    inner.style.animationDuration = speed + 's';
-  });
-
   gsap.from('.marquee-band', {
     opacity: 0,
     y: 32,
     duration: 0.9,
     ease: 'expo-out',
-    scrollTrigger: { trigger: '.marquee-band', start: 'top 90%' }
+    scrollTrigger: { trigger: '.marquee-band', start: 'top 95%' }
   });
 })();
 
@@ -372,13 +363,13 @@ function runHero() {
   document.querySelectorAll('.sl').forEach(line => {
     ScrollTrigger.create({
       trigger: line,
-      start: 'top 86%',
+      start: 'top 96%',
       once: true,
       onEnter: () => {
         gsap.to(line, {
           y: '0%',
           opacity: 1,
-          duration: 1.2,
+          duration: 1.0,
           ease: 'expo-out'
         });
       }
@@ -388,26 +379,32 @@ function runHero() {
 
 // ===== ENHANCED SCROLL REVEALS =====
 (function initScrollReveals() {
-  // About section
+  // Set initial hidden states in JS (CSS states removed to prevent mobile overflow)
+  gsap.set('.ab-item', { opacity: 0, x: -20 });
+  gsap.set('.edu-row', { opacity: 0, x: -20 });
+  gsap.set('.clink', { x: 22 });
+
+  // About section text
   document.querySelectorAll('.about-lead, .about-body').forEach((el, i) => {
     gsap.to(el, {
       opacity: 1,
       y: 0,
-      duration: 0.9,
+      duration: 0.8,
       ease: 'expo-out',
-      delay: i * 0.15,
-      scrollTrigger: { trigger: el, start: 'top 86%' }
+      delay: i * 0.12,
+      scrollTrigger: { trigger: el, start: 'top 96%' }
     });
   });
 
+  // About skill pills
   document.querySelectorAll('.ab-item').forEach((el, i) => {
     gsap.to(el, {
       opacity: 1,
       x: 0,
-      duration: 0.8,
+      duration: 0.7,
       ease: 'expo-out',
-      delay: i * 0.12,
-      scrollTrigger: { trigger: el, start: 'top 88%' }
+      delay: i * 0.08,
+      scrollTrigger: { trigger: el, start: 'top 97%' }
     });
   });
 
@@ -415,9 +412,9 @@ function runHero() {
   gsap.to('.exp-card', {
     opacity: 1,
     y: 0,
-    duration: 1,
+    duration: 0.9,
     ease: 'expo-out',
-    scrollTrigger: { trigger: '.exp-card', start: 'top 80%' }
+    scrollTrigger: { trigger: '.exp-card', start: 'top 92%' }
   });
 
   // Skills grid
@@ -426,12 +423,12 @@ function runHero() {
       gsap.to(els, {
         opacity: 1,
         y: 0,
-        stagger: 0.12,
-        duration: 0.95,
+        stagger: 0.1,
+        duration: 0.85,
         ease: 'expo-out'
       });
     },
-    start: 'top 84%',
+    start: 'top 94%',
     once: true
   });
 
@@ -440,10 +437,10 @@ function runHero() {
     gsap.to(el, {
       opacity: 1,
       x: 0,
-      duration: 0.85,
+      duration: 0.75,
       ease: 'expo-out',
-      delay: i * 0.12,
-      scrollTrigger: { trigger: el, start: 'top 86%' }
+      delay: i * 0.1,
+      scrollTrigger: { trigger: el, start: 'top 96%' }
     });
   });
 
@@ -452,19 +449,19 @@ function runHero() {
     gsap.to(el, {
       opacity: 1,
       x: 0,
-      duration: 0.8,
+      duration: 0.7,
       ease: 'expo-out',
-      delay: i * 0.12,
-      scrollTrigger: { trigger: el, start: 'top 86%' }
+      delay: i * 0.1,
+      scrollTrigger: { trigger: el, start: 'top 96%' }
     });
   });
 
   gsap.to('.contact-sub', {
     opacity: 1,
     y: 0,
-    duration: 0.8,
+    duration: 0.75,
     ease: 'expo-out',
-    scrollTrigger: { trigger: '.contact-sub', start: 'top 86%' }
+    scrollTrigger: { trigger: '.contact-sub', start: 'top 96%' }
   });
 })();
 
@@ -472,10 +469,10 @@ function runHero() {
 document.querySelectorAll('.sect-tag').forEach(tag => {
   gsap.from(tag, {
     opacity: 0,
-    x: -28,
-    duration: 0.7,
+    x: -20,
+    duration: 0.6,
     ease: 'expo-out',
-    scrollTrigger: { trigger: tag, start: 'top 88%' }
+    scrollTrigger: { trigger: tag, start: 'top 98%' }
   });
 });
 
@@ -483,11 +480,11 @@ document.querySelectorAll('.sect-tag').forEach(tag => {
 (function initProjectRows() {
   gsap.from('.proj-row', {
     opacity: 0,
-    x: -42,
-    stagger: 0.09,
-    duration: 0.8,
+    x: -28,
+    stagger: 0.07,
+    duration: 0.7,
     ease: 'expo-out',
-    scrollTrigger: { trigger: '.proj-list', start: 'top 83%' }
+    scrollTrigger: { trigger: '.proj-list', start: 'top 94%' }
   });
 })();
 
@@ -675,8 +672,9 @@ document.querySelectorAll('.sect-tag').forEach(tag => {
   }
 })();
 
-// ===== MAGNETIC EFFECT =====
+// ===== MAGNETIC EFFECT (pointer devices only) =====
 (function initMagnet() {
+  if (isTouch) return;
   document.querySelectorAll('.hbtn-primary, .hbtn-ghost, .clink, .pf, .nav-brand').forEach(el => {
     el.addEventListener('mousemove', e => {
       const r = el.getBoundingClientRect();
@@ -690,8 +688,9 @@ document.querySelectorAll('.sect-tag').forEach(tag => {
   });
 })();
 
-// ===== TEXT SCRAMBLE EFFECT =====
+// ===== TEXT SCRAMBLE EFFECT (pointer devices only) =====
 (function initScramble() {
+  if (isTouch) return;
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*';
   document.querySelectorAll('.hn-a, .hn-c').forEach(el => {
     const orig = el.textContent;
@@ -736,43 +735,25 @@ document.querySelectorAll('.sect-tag').forEach(tag => {
 })();
 
 // ===== PARALLAX SECTIONS =====
-(function initParallax() {
-  [
-    { sel: '.sect-tag', y: -15 },
-    { sel: '.section-h', y: -28 }
-  ].forEach(({ sel, y }) => {
-    document.querySelectorAll(sel).forEach(el => {
-      gsap.to(el, {
-        y,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: el.closest('.sect') || el,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.8
-        }
-      });
-    });
-  });
-})();
+// Parallax on section headings disabled — was causing scroll jank on mobile
 
 // ===== ABOUT SECTION REVEAL =====
 (function initAboutReveal() {
-  gsap.set('.al-left', { opacity: 0, x: -60 });
-  gsap.set('.al-right', { opacity: 0, x: 60 });
+  gsap.set('.al-left', { opacity: 0, x: -30 });
+  gsap.set('.al-right', { opacity: 0, x: 30 });
 
   ScrollTrigger.create({
     trigger: '#about',
-    start: 'top 76%',
+    start: 'top 92%',
     once: true,
     onEnter: () => {
-      gsap.to('.al-left', { opacity: 1, x: 0, duration: 1.1, ease: 'expo-out' });
+      gsap.to('.al-left', { opacity: 1, x: 0, duration: 0.9, ease: 'expo-out' });
       gsap.to('.al-right', {
         opacity: 1,
         x: 0,
-        duration: 1.1,
+        duration: 0.9,
         ease: 'expo-out',
-        delay: 0.18
+        delay: 0.15
       });
     }
   });
@@ -782,38 +763,38 @@ document.querySelectorAll('.sect-tag').forEach(tag => {
 (function initExpCardAnimations() {
   ScrollTrigger.create({
     trigger: '.exp-card',
-    start: 'top 78%',
+    start: 'top 92%',
     once: true,
     onEnter: () => {
       gsap.from('.ec-side', {
         opacity: 0,
-        x: -35,
-        duration: 0.8,
+        x: -24,
+        duration: 0.7,
         ease: 'expo-out',
-        delay: 0.25
+        delay: 0.15
       });
       gsap.from('.ec-title', {
         opacity: 0,
-        y: 28,
-        duration: 0.7,
+        y: 20,
+        duration: 0.6,
         ease: 'expo-out',
-        delay: 0.4
+        delay: 0.3
       });
       gsap.from('.ec-list li', {
         opacity: 0,
-        x: -22,
-        stagger: 0.1,
-        duration: 0.6,
+        x: -16,
+        stagger: 0.07,
+        duration: 0.55,
         ease: 'expo-out',
-        delay: 0.5
+        delay: 0.38
       });
       gsap.from('.ec-tags span', {
         opacity: 0,
-        scale: 0.7,
-        stagger: 0.08,
-        duration: 0.5,
-        ease: 'back.out(2.5)',
-        delay: 0.65
+        scale: 0.8,
+        stagger: 0.06,
+        duration: 0.45,
+        ease: 'back.out(2)',
+        delay: 0.5
       });
     }
   });
@@ -823,13 +804,13 @@ document.querySelectorAll('.sect-tag').forEach(tag => {
 (function initContactReveal() {
   ScrollTrigger.create({
     trigger: '#contact',
-    start: 'top 76%',
+    start: 'top 92%',
     once: true,
     onEnter: () => {
       gsap.from('.contact-h .sl', {
         y: '115%',
-        stagger: 0.12,
-        duration: 1.1,
+        stagger: 0.1,
+        duration: 0.9,
         ease: 'expo-out'
       });
     }

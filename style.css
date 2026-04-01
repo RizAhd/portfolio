@@ -52,6 +52,7 @@
 
 html {
   font-size: 16px;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-h) + 2rem);
   scrollbar-width: thin;
@@ -1070,10 +1071,10 @@ a, button {
 .section-h {
   font-family: var(--display);
   font-weight: 700;
-  font-size: clamp(3.2rem, 8.5vw, 9rem);
-  letter-spacing: 0.04em;
-  line-height: 0.92;
-  margin-bottom: 4rem;
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  margin-bottom: 3rem;
   overflow: hidden;
 }
 
@@ -1096,7 +1097,7 @@ a, button {
 .about-layout {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
-  gap: 6rem;
+  gap: 4rem;
   align-items: start;
 }
 
@@ -1135,8 +1136,6 @@ a, button {
   border-radius: var(--r);
   font-size: 0.9rem;
   font-weight: 500;
-  opacity: 0;
-  transform: translateX(-32px);
   transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
@@ -1226,9 +1225,9 @@ a, button {
 .ec-title {
   font-family: var(--display);
   font-weight: 700;
-  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
-  letter-spacing: 0.04em;
-  line-height: 1.1;
+  font-size: clamp(1.3rem, 2.8vw, 2.2rem);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
 }
 
 .ec-date {
@@ -1550,8 +1549,6 @@ a, button {
   gap: 2.5rem;
   padding: 2rem 0;
   border-bottom: 1px solid var(--rule);
-  opacity: 0;
-  transform: translateX(-45px);
   transition: padding-left 0.3s ease, background 0.3s ease;
   border-radius: var(--r);
 }
@@ -1621,16 +1618,16 @@ a, button {
 .contact-wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6rem;
+  gap: 4rem;
   align-items: start;
 }
 
 .contact-h {
   font-family: var(--display);
   font-weight: 700;
-  font-size: clamp(3.2rem, 8.5vw, 9rem);
-  letter-spacing: 0.04em;
-  line-height: 0.92;
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
+  letter-spacing: 0.02em;
+  line-height: 1.05;
   overflow: hidden;
 }
 
@@ -1664,7 +1661,6 @@ a, button {
   position: relative;
   overflow: hidden;
   opacity: 0;
-  transform: translateX(35px);
 }
 
 .clink::before {
@@ -1960,10 +1956,7 @@ a, button {
     gap: 0.5rem;
   }
   .section-h, .contact-h {
-    margin-bottom: 3rem;
-  }
-  .section-h, .contact-h, .ec-title {
-    letter-spacing: 0.02em;
+    margin-bottom: 2.5rem;
   }
   .proj-filters {
     flex-wrap: wrap;
@@ -2044,8 +2037,12 @@ a, button {
   .sg-block, .exp-card {
     padding: 1.8rem;
   }
+  .sect {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
   .contact-wrap {
-    gap: 2.5rem;
+    gap: 2rem;
   }
   .clink {
     gap: 1rem;
@@ -2057,7 +2054,7 @@ a, button {
 
 @media(max-width:480px) {
   .sect {
-    padding: 4.5rem 1rem;
+    padding: 3.5rem 1rem;
   }
   #nav {
     padding: 0 1rem;
@@ -2127,6 +2124,19 @@ a, button {
     right: 1rem;
   }
   .exp-card, .sg-block {
-    padding: 1.5rem;
+    padding: 1.25rem;
+  }
+  .section-h {
+    font-size: clamp(1.6rem, 5.5vw, 2.4rem);
+    margin-bottom: 2rem;
+  }
+  .contact-h {
+    font-size: clamp(1.6rem, 5.5vw, 2.4rem);
+  }
+  .er-body h3 {
+    font-size: 1rem;
+  }
+  .about-lead {
+    font-size: 1rem;
   }
 }
